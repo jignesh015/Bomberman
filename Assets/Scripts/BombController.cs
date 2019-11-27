@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class BombController : MonoBehaviour
 {
+    public bool hasDetonator;
+    public float explodeTime = 4f;
     private Transform player;
     private bool shouldTween = true;
     private bool isRigid = false;
@@ -13,6 +15,8 @@ public class BombController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (!hasDetonator)
+            Explode(explodeTime);
     }
 
     // Update is called once per frame
@@ -32,8 +36,18 @@ public class BombController : MonoBehaviour
                 GetComponent<BoxCollider>().enabled = true;
             }
         }
-
     }
 
+    public void Explode()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Explode(float _explodeTime)
+    {
+        Destroy(gameObject, _explodeTime);
+
+        GameController.Instance.Explode(transform.position, _explodeTime);
+    }
 
 }

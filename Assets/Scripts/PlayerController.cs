@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        {
+            ButtonClickHandler(true);
+        }
+
         if (isDown)
         {
             playerRigidBody.velocity = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal") * speed + Input.GetAxis("Horizontal") * speed, 0,

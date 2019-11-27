@@ -1,0 +1,1747 @@
+fileFormatVersion: 2
+guid: c8588e859351e624687ac32d6981eb30
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6789902930179483108
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_12
+  - first:
+      213: 764164319745935936
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_13
+  - first:
+      213: -2562519809894438300
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_14
+  - first:
+      213: 7532446338686587888
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_15
+  - first:
+      213: -6217546570024452898
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_16
+  - first:
+      213: -685524474687710164
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_17
+  - first:
+      213: -4109148365129364096
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_18
+  - first:
+      213: -7447357299281876571
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_19
+  - first:
+      213: 5806796423777663810
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_20
+  - first:
+      213: -1704254058678777392
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_21
+  - first:
+      213: -3372596083644897301
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_22
+  - first:
+      213: -7426133814762373732
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_23
+  - first:
+      213: 8082811785996654267
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_24
+  - first:
+      213: -459690926924127554
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_25
+  - first:
+      213: -6505807028145223671
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_26
+  - first:
+      213: 7909519341448206140
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_27
+  - first:
+      213: 147016151171939211
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_28
+  - first:
+      213: 6634792996558490229
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_29
+  - first:
+      213: -6862318162116311639
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_30
+  - first:
+      213: -2867719787242188130
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_31
+  - first:
+      213: -1160116240828019692
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_32
+  - first:
+      213: 4703355585496021073
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_33
+  - first:
+      213: 8902361113950501632
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_34
+  - first:
+      213: -2868747685102539254
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_35
+  - first:
+      213: 5031186306029978853
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_36
+  - first:
+      213: 7540974915860855333
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_37
+  - first:
+      213: 7086410329236873098
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_38
+  - first:
+      213: -4013867557280785289
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_39
+  - first:
+      213: 8492814730073513425
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_40
+  - first:
+      213: 3045322953038926303
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_41
+  - first:
+      213: -5340468716740724515
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_42
+  - first:
+      213: -5158590899480015090
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_43
+  - first:
+      213: 2155287283821026056
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_44
+  - first:
+      213: -2206623474848196907
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_45
+  - first:
+      213: 2143320113426021479
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_46
+  - first:
+      213: -6024708555979703719
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_47
+  - first:
+      213: -4964288006033203002
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_48
+  - first:
+      213: -4671758325029977482
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_49
+  - first:
+      213: 2771702603515573425
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_50
+  - first:
+      213: -6035760879033672366
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_51
+  - first:
+      213: 8756789421957998296
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_52
+  - first:
+      213: 2118903416973879161
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_53
+  - first:
+      213: -5324594010875508888
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_54
+  - first:
+      213: -5589054578065633569
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_55
+  - first:
+      213: -3894796484216848535
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_56
+  - first:
+      213: -1670704720374063954
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_57
+  - first:
+      213: -7693215284102841973
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_58
+  - first:
+      213: 193076159427312909
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_59
+  - first:
+      213: 3647869749124085830
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_60
+  - first:
+      213: -5505711903000031744
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_61
+  - first:
+      213: -907455103927811260
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_62
+  - first:
+      213: 6043469709663040257
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_63
+  - first:
+      213: -3134908824118533605
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_64
+  - first:
+      213: -3544833746135292423
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_65
+  - first:
+      213: -4047830262158536890
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_66
+  - first:
+      213: 3689489045721956627
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_67
+  - first:
+      213: 3020148744429575923
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_68
+  - first:
+      213: 3830383580409732552
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_69
+  - first:
+      213: 8541965904827425890
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_70
+  - first:
+      213: 2804277757451347949
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_71
+  - first:
+      213: -2144945568288721681
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_72
+  - first:
+      213: -1302418034704397501
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_73
+  - first:
+      213: -6643758290295277925
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_74
+  - first:
+      213: 5282425358221995084
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_75
+  - first:
+      213: 5358774753137621229
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_76
+  - first:
+      213: -2074021686025504260
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_77
+  - first:
+      213: -6756645513753052990
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_78
+  - first:
+      213: -2270699393900233392
+    second: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_79
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_12
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 613.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1770c280dedb99849820440984427bac
+      internalID: -6789902930179483108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_13
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 613.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3999a4f25cd78134ca273136b233d1f5
+      internalID: 764164319745935936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_14
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 613.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 554a6cd6b4364de49b7476b2b56684e4
+      internalID: -2562519809894438300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_15
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 613.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8db3cdd5f25924dae993c404423d12
+      internalID: 7532446338686587888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_16
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 613.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a82fbd7551108e4ca6f078b9abbdaa0
+      internalID: -6217546570024452898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_17
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 613.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913233873f6cca6499a39349d1275a71
+      internalID: -685524474687710164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c99858834b3174c98e377e3654f782
+      internalID: -4109148365129364096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_19
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d3935f0ec9eab4398fdf910918fa26
+      internalID: -7447357299281876571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_20
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078f2ba258f1c8945b51ad9fd2c4c28e
+      internalID: 5806796423777663810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_21
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a218913257e0ec14f9f15953501cc8d6
+      internalID: -1704254058678777392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_22
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd61a189dbf6e9946ab3ea54a7375250
+      internalID: -3372596083644897301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_23
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6429f2efa228d4caf7da6f89360bb6
+      internalID: -7426133814762373732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_24
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad86175ebb4257a4bb641fbe915c6eaf
+      internalID: 8082811785996654267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_25
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889fb3432ed604246bc3ae62ab224a2a
+      internalID: -459690926924127554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_26
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 526.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c380d0f86500b04faae880a1b6ed3e8
+      internalID: -6505807028145223671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5181b041a86fc994f8870d63e7f0f8ab
+      internalID: 7909519341448206140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_28
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf9286050a2aa94f95bf2f733d605e5
+      internalID: 147016151171939211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_29
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c174d0a7e921af4aab96bb4430a4e46
+      internalID: 6634792996558490229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_30
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082414d1200602d4680e1d61dee2dae9
+      internalID: -6862318162116311639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_31
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b762960c6624f940a81a3a19626f6f7
+      internalID: -2867719787242188130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_32
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6b19f72d4fd0646a217166177b0b77
+      internalID: -1160116240828019692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_33
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7419dcbd31bade0449b7a83977fc548b
+      internalID: 4703355585496021073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_34
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6856bb975b6dfc49a3de23a83ad7b90
+      internalID: 8902361113950501632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_35
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 439.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a8444e9254a446428f031fab68c2267
+      internalID: -2868747685102539254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30bbac030365c04dbb92af6d39aa43d
+      internalID: 5031186306029978853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_37
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab459585a8c63545af010025408d2e7
+      internalID: 7540974915860855333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_38
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bda9e2b8633e3e41b2193020d9e54a5
+      internalID: 7086410329236873098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_39
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08d64fa24c80a3459363d264e5dc7d9
+      internalID: -4013867557280785289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_40
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a396004a4ac1efd4ebafc5502f607020
+      internalID: 8492814730073513425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_41
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cf9921913c09e4d90320e02fa89c83
+      internalID: 3045322953038926303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_42
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07793134cb38a9740ba791780bedb16b
+      internalID: -5340468716740724515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_43
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d7c3ad33b6020c429e595600172602c
+      internalID: -5158590899480015090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_44
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 352.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b98983dc2f0df934b9f3ef09789966a2
+      internalID: 2155287283821026056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cf703c6a7b46248b8a7632d8104e68
+      internalID: -2206623474848196907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_46
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06b4f2038d1f36498c21c067bb7cfdb
+      internalID: 2143320113426021479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_47
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 824a650df585fd84ea5e11f7d5275008
+      internalID: -6024708555979703719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_48
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d00acac3c96db74bb4dddf1c8a8596e
+      internalID: -4964288006033203002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_49
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5da4bd350117468448a1bc588f8bb39a
+      internalID: -4671758325029977482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_50
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5f55d4b97338b49981c9ce4276248b
+      internalID: 2771702603515573425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_51
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1869912f611a1de4ab1b559507839877
+      internalID: -6035760879033672366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_52
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34df18933d0b0e643ab569643b50193a
+      internalID: 8756789421957998296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_53
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 265.44446
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5989705e7d80291438f928bf7520e5b9
+      internalID: 2118903416973879161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153e72aecef05cc4d93d1a146a319661
+      internalID: -5324594010875508888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_55
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080857c6d5405734297fece4f447590d
+      internalID: -5589054578065633569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_56
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660cedb4f82dd4f4695e1ce254c6832d
+      internalID: -3894796484216848535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_57
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ec3e5fd535d9c4ea2a0bea31b74059
+      internalID: -1670704720374063954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_58
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2a4d618bf952d4887ae3bf84de7316
+      internalID: -7693215284102841973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_59
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ccebe5c73ffce1429d11dd9973f85bd
+      internalID: 193076159427312909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_60
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 910227918d20d234087fa99294a48d5d
+      internalID: 3647869749124085830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_61
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1c9c86b7dbce37419ed629e1c14e723
+      internalID: -5505711903000031744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_62
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 178.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c0079194f7380646aab4002264f2313
+      internalID: -907455103927811260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd590b1cd6520a04096319a2e25e29b9
+      internalID: 6043469709663040257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_64
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a313044a4b0d5724d836d9d0655118e5
+      internalID: -3134908824118533605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_65
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb426add05f2da5438591f1d3451bf26
+      internalID: -3544833746135292423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_66
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f1c600374cff54fb60b9ca519fbe02
+      internalID: -4047830262158536890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_67
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f414103df7c6834419ff04ca155d9fcc
+      internalID: 3689489045721956627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_68
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecebfce2109700d4998bf0d6acdec426
+      internalID: 3020148744429575923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_69
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c449598892f967347b2c6c4dafca0c65
+      internalID: 3830383580409732552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_70
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32416e8b4f1ca4142a7f268786068895
+      internalID: 8541965904827425890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_71
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 91.44444
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e078517e17babe1449d3cf467772d7cf
+      internalID: 2804277757451347949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681966735be73cc46b0b5318bf60d07d
+      internalID: -2144945568288721681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_73
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 588cc7a6a33fb5046a19521ccdde47c1
+      internalID: -1302418034704397501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_74
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53008095ae3a7c54b91b865d3b39cce0
+      internalID: -6643758290295277925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_75
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf56074930ea0b4cab5f83e5a1af9be
+      internalID: 5282425358221995084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_76
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825529d50ab7e2f4f9b6706d3e97caa6
+      internalID: 5358774753137621229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_77
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba1f0e4777f58b409f17cbf68d845d1
+      internalID: -2074021686025504260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_78
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44a29c973544824ca63bccb1344f236
+      internalID: -6756645513753052990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: toppng.com-explosion-sprite-png-2d-explosion-sprite-sheet-899x857_79
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 4.4444427
+        width: 92.77778
+        height: 87.55556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98b6b533c9ba5a646947d77b00983e8c
+      internalID: -2270699393900233392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

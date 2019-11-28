@@ -11,6 +11,8 @@ public class LevelEditor : Editor
     GameObject nonDestroyableWallPrefab;
     GameObject destroyableWallPrefab;
 
+    List<string> destroyableWallPositions;
+
     bool scriptActive;
 
     LevelCreator create;
@@ -208,6 +210,8 @@ public class LevelEditor : Editor
             return;
         }
 
+        destroyableWallPositions = new List<string>();
+
         scriptActive = true;
         DestroyAllChild(create.destroyableWallHolder.transform);
 
@@ -224,10 +228,18 @@ public class LevelEditor : Editor
 
             if (!(i % 2 == 0 && j % 2 == 0))
             {
-                GameObject destroyableWall = (GameObject)PrefabUtility.InstantiatePrefab(destroyableWallPrefab);
-                destroyableWall.transform.position = new Vector3(create.startPos.x + i + create.offset.x,
-                    create.startPos.y + create.offset.y, create.startPos.z + j + create.offset.z);
-                destroyableWall.transform.parent = create.destroyableWallHolder.transform;
+                float posX = create.startPos.x + i + create.offset.x;
+                float posY = create.startPos.y + create.offset.y;
+                float posZ = create.startPos.z + j + create.offset.z;
+
+                if (!destroyableWallPositions.Contains("X" + posX.ToString() + "Z" + posZ.ToString()))
+                {
+                    GameObject destroyableWall = (GameObject)PrefabUtility.InstantiatePrefab(destroyableWallPrefab);
+                    destroyableWall.transform.position = new Vector3(posX, posY, posZ);
+                    destroyableWall.transform.parent = create.destroyableWallHolder.transform;
+                    destroyableWallPositions.Add("X" + posX.ToString() + "Z" + posZ.ToString());
+                }
+                
             }
         }
         scriptActive = false;

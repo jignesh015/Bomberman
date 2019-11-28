@@ -9,12 +9,18 @@ public class GameController : MonoBehaviour
     [Header("Bomb")]
     public GameObject bombPrefab;
     public GameObject bombHolder;
+    public List<GameObject> activeBombs;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
     public GameObject explosionHolder;
+    [Range(1, 10)]
+    public int explosionRange = 1;
 
-    public List<GameObject> activeBombs;
+    [Header("List of walls position")]
+    public Dictionary<string, GameObject> destroyableWallsPositionDict;
+    public Dictionary<string, GameObject> nonDestroyableWallsPositionDict;
+    public Dictionary<string, GameObject> outerWallsPositionDict;
 
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
@@ -33,8 +39,10 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        //Get player reference
         player = GameObject.FindGameObjectWithTag("Player");
 
+        //Initialize list for storing active bombs
         activeBombs = new List<GameObject>();
     }
 
@@ -50,6 +58,7 @@ public class GameController : MonoBehaviour
 #endif
     }
 
+    //Place bomb at player's current location
     public void PlaceBomb()
     {
         GameObject placedBomb = Instantiate(bombPrefab, bombHolder.transform);
@@ -59,18 +68,19 @@ public class GameController : MonoBehaviour
         activeBombs.Add(placedBomb);
     }
 
-    public void Explode(Vector3 bombOrigin, float _explodeTime)
+    #region "Store walls position to a list"
+    public Dictionary<string, GameObject> GetDestroyableWallsPosition()
     {
-        StartCoroutine(DoExplosion(bombOrigin, _explodeTime));
+        destroyableWallsPositionDict = new Dictionary<string, GameObject>();
+        GameObject[] destroyableWalls = GameObject.FindGameObjectsWithTag("Destroyable");
+        foreach (GameObject wall in destroyableWalls)
+        {
+            string positionString = "X" + wall.transform.position.x.ToString() + "Z" + wall.transform.position.z.ToString();
+            destroyableWallsPositionDict.Add(positionString, wall);
+        }
+
+        return destroyableWallsPositionDict;
     }
 
-    public IEnumerator DoExplosion(Vector3 bombOrigin, float _explodeTime)
-    {
-        Debug.Log("Do explosion");
-        yield return new WaitForSeconds(_explodeTime);
-
-        GameObject explosion = Instantiate(explosionPrefab, explosionHolder.transform);
-        explosion.transform.position = new Vector3(bombOrigin.x, explosion.transform.position.y, bombOrigin.z);
-        Debug.Log("Explosion done");
-    }
+    #endregion
 }

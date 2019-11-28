@@ -8272,6 +8272,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7915693323627687281, guid: c823cc345da14d04a9e3fd82003fcef0,
     type: 3}
   explosionHolder: {fileID: 730403299}
+  explosionRange: 1
   activeBombs: []
 --- !u!4 &1263137410
 Transform:

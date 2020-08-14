@@ -111,12 +111,12 @@ public class LevelEditor : Editor
     {
         if (create.gridSizeX < 5 || create.gridSizeZ < 5)
         {
-            Debug.LogWarning("Grid size must be greater than or equal to 5");
+            Debug.LogError("Grid size must be greater than or equal to 5");
             return false;
         }
         if (create.gridSizeX % 2 == 0 || create.gridSizeZ % 2 == 0)
         {
-            Debug.Log("Grid size must me an odd integer");
+            Debug.LogError("Grid size must me an odd integer");
             return false;
         }
 

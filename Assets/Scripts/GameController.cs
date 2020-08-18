@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public GameObject explosionHolder;
     [Range(1, 10)]
     public int explosionRange = 1;
+    public float explosionDuration;
 
     [Header("List of walls position")]
     public Dictionary<string, GameObject> destroyableWallsPositionDict;
@@ -44,6 +45,10 @@ public class GameController : MonoBehaviour
 
         //Initialize list for storing active bombs
         activeBombs = new List<GameObject>();
+
+        //Get all non-destroyable and outer wall positions
+        GetNonDestroyableWallsPosition();
+
     }
 
     // Update is called once per frame
@@ -80,6 +85,24 @@ public class GameController : MonoBehaviour
         }
 
         return destroyableWallsPositionDict;
+    }
+
+    public void GetNonDestroyableWallsPosition()
+    {
+        nonDestroyableWallsPositionDict = new Dictionary<string, GameObject>();
+        outerWallsPositionDict = new Dictionary<string, GameObject>();
+        GameObject[] nonDestroyableWalls = GameObject.FindGameObjectsWithTag("NonDestroyable");
+        GameObject[] outerWalls = GameObject.FindGameObjectsWithTag("OuterWall");
+        foreach (GameObject wall in nonDestroyableWalls)
+        {
+            string positionString = "X" + wall.transform.position.x.ToString() + "Z" + wall.transform.position.z.ToString();
+            nonDestroyableWallsPositionDict.Add(positionString, wall);
+        }
+        foreach (GameObject wall in outerWalls)
+        {
+            string positionString = "X" + wall.transform.position.x.ToString() + "Z" + wall.transform.position.z.ToString();
+            outerWallsPositionDict.Add(positionString, wall);
+        }
     }
 
     #endregion

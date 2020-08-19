@@ -11,10 +11,12 @@ public class BombController : MonoBehaviour
     private bool shouldTween = true;
     private bool isRigid = false;
     private List<GameObject> explosionTrails;
+    private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameController.Instance;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         explosionTrails = new List<GameObject>();
         if (!hasDetonator)
@@ -42,7 +44,8 @@ public class BombController : MonoBehaviour
 
     public void Explode()
     {
-        Destroy(gameObject);
+        //Start bomb explosion at bomb origin right now!
+        StartCoroutine(DoExplosion(transform.position, 0));
     }
 
     public void Explode(float _explodeTime)
@@ -58,8 +61,9 @@ public class BombController : MonoBehaviour
         //Hide bomb 
         GetComponent<BoxCollider>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
-        Invoke("DestroyTrails", GameController.Instance.explosionDuration);
-        Destroy(gameObject, GameController.Instance.explosionDuration);
+        Invoke("DestroyTrails", gameController.explosionDuration);
+        Destroy(gameObject, gameController.explosionDuration);
+        gameController.activeBombs.RemoveAt(0);
 
         GameObject explosion = GetExplosionGameObject();
         explosionTrails.Add(explosion);
@@ -71,66 +75,26 @@ public class BombController : MonoBehaviour
         //Destroy walls near explosion
     }
 
-    private GameObject GetExplosionGameObject()
+    public void CancelPreviousDetonationAndDoExplosion()
     {
-        return Instantiate(GameController.Instance.explosionPrefab, GameController.Instance.explosionHolder.transform);
+        StopAllCoroutines();
+        Explode();
     }
 
-    //private IEnumerator DoTrailExplosion(Vector3 _bombOrigin)
-    //{
-    //    Dictionary<string, GameObject> destroyableWallsPosition = GameController.Instance.GetDestroyableWallsPosition();
-
-    //    int explosionRange = GameController.Instance.explosionRange;
-    //    for (int i = 1; i <= explosionRange; i++)
-    //    {
-    //        //X+1
-    //        GameObject explosionX1 = GetExplosionGameObject();
-    //        explosionX1.transform.position = new Vector3(_bombOrigin.x + i, explosionX1.transform.position.y, _bombOrigin.z);
-    //        string positionStringX1 = "X" + explosionX1.transform.position.x + "Z" + explosionX1.transform.position.z;
-    //        if (destroyableWallsPosition.ContainsKey(positionStringX1))
-    //        {
-    //            Destroy(destroyableWallsPosition[positionStringX1]);
-    //        }
-
-    //        //X-1
-    //        GameObject explosionX2 = GetExplosionGameObject();
-    //        explosionX2.transform.position = new Vector3(_bombOrigin.x - i, explosionX2.transform.position.y, _bombOrigin.z);
-    //        string positionStringX2 = "X" + explosionX2.transform.position.x + "Z" + explosionX2.transform.position.z;
-    //        if (destroyableWallsPosition.ContainsKey(positionStringX2))
-    //        {
-    //            Destroy(destroyableWallsPosition[positionStringX2]);
-    //        }
-
-    //        //Z+1
-    //        GameObject explosionZ1 = GetExplosionGameObject();
-    //        explosionZ1.transform.position = new Vector3(_bombOrigin.x, explosionZ1.transform.position.y, _bombOrigin.z + i);
-    //        string positionStringZ1 = "X" + explosionZ1.transform.position.x + "Z" + explosionZ1.transform.position.z;
-    //        if (destroyableWallsPosition.ContainsKey(positionStringZ1))
-    //        {
-    //            Destroy(destroyableWallsPosition[positionStringZ1]);
-    //        }
-
-    //        //Z-1
-    //        GameObject explosionZ2 = GetExplosionGameObject();
-    //        explosionZ2.transform.position = new Vector3(_bombOrigin.x, explosionZ2.transform.position.y, _bombOrigin.z - i);
-    //        string positionStringZ2 = "X" + explosionZ2.transform.position.x + "Z" + explosionZ2.transform.position.z;
-    //        if (destroyableWallsPosition.ContainsKey(positionStringZ2))
-    //        {
-    //            Destroy(destroyableWallsPosition[positionStringZ2]);
-    //        }
-    //    }
-
-    //    yield return explosionRange;
-    //}
+    private GameObject GetExplosionGameObject()
+    {
+        return Instantiate(gameController.explosionPrefab, gameController.explosionHolder.transform);
+    }
 
     private IEnumerator DoTrailExplosion(Vector3 _bombOrigin)
     {
-        Dictionary<string, GameObject> destroyableWallsPosition = GameController.Instance.GetDestroyableWallsPosition();
-        Dictionary<string, GameObject> nonDestroyableWallsPosition = GameController.Instance.nonDestroyableWallsPositionDict;
-        Dictionary<string, GameObject> outerWallsPosition = GameController.Instance.outerWallsPositionDict;
+        Dictionary<string, GameObject> destroyableWallsPosition = gameController.GetDestroyableWallsPosition();
+        Dictionary<string, GameObject> nonDestroyableWallsPosition = gameController.nonDestroyableWallsPositionDict;
+        Dictionary<string, GameObject> outerWallsPosition = gameController.outerWallsPositionDict;
+        Dictionary<string, GameObject> activeBombPosition = gameController.GetActiveBombsPosition();
         bool stopX1 = false, stopX2 = false, stopZ1 = false, stopZ2 = false;
 
-        int explosionRange = GameController.Instance.explosionRange;
+        int explosionRange = gameController.explosionRange;
         for (int i = 1; i <= explosionRange; i++)
         {
             //X+1
@@ -141,10 +105,12 @@ public class BombController : MonoBehaviour
                 explosionX1.transform.position = new Vector3(_bombOrigin.x + i, explosionX1.transform.position.y, _bombOrigin.z);
                 string positionStringX1 = "X" + explosionX1.transform.position.x + "Z" + explosionX1.transform.position.z;
                 if (destroyableWallsPosition.ContainsKey(positionStringX1) || nonDestroyableWallsPosition.ContainsKey(positionStringX1) 
-                    || outerWallsPosition.ContainsKey(positionStringX1))
+                    || outerWallsPosition.ContainsKey(positionStringX1) || activeBombPosition.ContainsKey(positionStringX1))
                 {
                     explosionX1.SetActive(false);
-                    if(destroyableWallsPosition.ContainsKey(positionStringX1)) Destroy(destroyableWallsPosition[positionStringX1]);
+                    if(destroyableWallsPosition.ContainsKey(positionStringX1)) DestroyWalls(destroyableWallsPosition[positionStringX1]);
+                    if (activeBombPosition.ContainsKey(positionStringX1)) 
+                        activeBombPosition[positionStringX1].GetComponent<BombController>().CancelPreviousDetonationAndDoExplosion();
                     stopX1 = true;
                 }
             }
@@ -158,10 +124,12 @@ public class BombController : MonoBehaviour
                 explosionX2.transform.position = new Vector3(_bombOrigin.x - i, explosionX2.transform.position.y, _bombOrigin.z);
                 string positionStringX2 = "X" + explosionX2.transform.position.x + "Z" + explosionX2.transform.position.z;
                 if (destroyableWallsPosition.ContainsKey(positionStringX2) || nonDestroyableWallsPosition.ContainsKey(positionStringX2)
-                    || outerWallsPosition.ContainsKey(positionStringX2))
+                    || outerWallsPosition.ContainsKey(positionStringX2) || activeBombPosition.ContainsKey(positionStringX2))
                 {
                     explosionX2.SetActive(false);
-                    if (destroyableWallsPosition.ContainsKey(positionStringX2)) Destroy(destroyableWallsPosition[positionStringX2]);
+                    if (destroyableWallsPosition.ContainsKey(positionStringX2)) DestroyWalls(destroyableWallsPosition[positionStringX2]);
+                    if (activeBombPosition.ContainsKey(positionStringX2))
+                        activeBombPosition[positionStringX2].GetComponent<BombController>().CancelPreviousDetonationAndDoExplosion();
                     stopX2 = true;
                 }
             }
@@ -175,10 +143,12 @@ public class BombController : MonoBehaviour
                 explosionZ1.transform.position = new Vector3(_bombOrigin.x, explosionZ1.transform.position.y, _bombOrigin.z + i);
                 string positionStringZ1 = "X" + explosionZ1.transform.position.x + "Z" + explosionZ1.transform.position.z;
                 if (destroyableWallsPosition.ContainsKey(positionStringZ1) || nonDestroyableWallsPosition.ContainsKey(positionStringZ1)
-                    || outerWallsPosition.ContainsKey(positionStringZ1))
+                    || outerWallsPosition.ContainsKey(positionStringZ1) || activeBombPosition.ContainsKey(positionStringZ1))
                 {
                     explosionZ1.SetActive(false);
-                    if (destroyableWallsPosition.ContainsKey(positionStringZ1)) Destroy(destroyableWallsPosition[positionStringZ1]);
+                    if (destroyableWallsPosition.ContainsKey(positionStringZ1)) DestroyWalls(destroyableWallsPosition[positionStringZ1]);
+                    if (activeBombPosition.ContainsKey(positionStringZ1)) 
+                        activeBombPosition[positionStringZ1].GetComponent<BombController>().CancelPreviousDetonationAndDoExplosion();
                     stopZ1 = true;
                 }
             }
@@ -192,10 +162,12 @@ public class BombController : MonoBehaviour
                 explosionZ2.transform.position = new Vector3(_bombOrigin.x, explosionZ2.transform.position.y, _bombOrigin.z - i);
                 string positionStringZ2 = "X" + explosionZ2.transform.position.x + "Z" + explosionZ2.transform.position.z;
                 if (destroyableWallsPosition.ContainsKey(positionStringZ2) || nonDestroyableWallsPosition.ContainsKey(positionStringZ2)
-                    || outerWallsPosition.ContainsKey(positionStringZ2))
+                    || outerWallsPosition.ContainsKey(positionStringZ2) || activeBombPosition.ContainsKey(positionStringZ2))
                 {
                     explosionZ2.SetActive(false);
-                    if (destroyableWallsPosition.ContainsKey(positionStringZ2)) Destroy(destroyableWallsPosition[positionStringZ2]);
+                    if (destroyableWallsPosition.ContainsKey(positionStringZ2)) DestroyWalls(destroyableWallsPosition[positionStringZ2]);
+                    if (activeBombPosition.ContainsKey(positionStringZ2)) 
+                        activeBombPosition[positionStringZ2].GetComponent<BombController>().CancelPreviousDetonationAndDoExplosion();
                     stopZ2 = true;
                 }
             }
@@ -204,6 +176,13 @@ public class BombController : MonoBehaviour
         }
 
         yield return explosionRange;
+    }
+
+    private void DestroyWalls(GameObject _wallToDestroy)
+    {
+        GameObject _wallDestroyEffect = Instantiate(gameController.wallDestroyPrefab, gameController.explosionHolder.transform);
+        _wallDestroyEffect.transform.position = _wallToDestroy.transform.position;
+        Destroy(_wallToDestroy);
     }
 
     private void DestroyTrails()

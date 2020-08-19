@@ -10,10 +10,11 @@ public class GameController : MonoBehaviour
     public GameObject bombPrefab;
     public GameObject bombHolder;
     public List<GameObject> activeBombs;
+    public Dictionary<string, GameObject> activeBombsPositionDict;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
-    public GameObject explosionHolder;
+    public GameObject wallDestroyPrefab, explosionHolder;
     [Range(1, 10)]
     public int explosionRange = 1;
     public float explosionDuration;
@@ -73,7 +74,7 @@ public class GameController : MonoBehaviour
         activeBombs.Add(placedBomb);
     }
 
-    #region "Store walls position to a list"
+    #region "Store walls and bombs position in a list"
     public Dictionary<string, GameObject> GetDestroyableWallsPosition()
     {
         destroyableWallsPositionDict = new Dictionary<string, GameObject>();
@@ -103,6 +104,18 @@ public class GameController : MonoBehaviour
             string positionString = "X" + wall.transform.position.x.ToString() + "Z" + wall.transform.position.z.ToString();
             outerWallsPositionDict.Add(positionString, wall);
         }
+    }
+
+    public Dictionary<string,GameObject> GetActiveBombsPosition()
+    {
+        activeBombsPositionDict = new Dictionary<string, GameObject>();
+        foreach (GameObject _bomb in activeBombs)
+        {
+            string positionString = "X" + _bomb.transform.position.x.ToString() + "Z" + _bomb.transform.position.z.ToString();
+            activeBombsPositionDict.Add(positionString, _bomb);
+        }
+
+        return activeBombsPositionDict;
     }
 
     #endregion

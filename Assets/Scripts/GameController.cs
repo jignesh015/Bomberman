@@ -24,6 +24,10 @@ public class GameController : MonoBehaviour
     public Dictionary<string, GameObject> nonDestroyableWallsPositionDict;
     public Dictionary<string, GameObject> outerWallsPositionDict;
 
+    [Header("Enemies")]
+    public float timeToDissolveEnemy;
+    public List<string> tagsEnemyShouldCollideWith;
+
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
 

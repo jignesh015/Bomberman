@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [HideInInspector]
     public CharacterController enemy;
+
+    public Renderer mainRenderer;
     public enum EnemyType { Normal, Runner1, Runner2, Ghost1, Ghost2, Hitter, MultiLives }
     public List<Vector3> enemyWalkingDirection;
 
@@ -14,10 +17,18 @@ public class EnemyController : MonoBehaviour
     public int lives = 1;
 
     public float startYPos = 0;
+
+    private bool isDead;
+    private float dissolveValue;
+    private Material enemyMat;
+    private GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponent<CharacterController>();
+        gameController = GameController.Instance;
+        enemyMat = mainRenderer.material;
+
         enemyWalkingDirection = new List<Vector3>()
         {
             new Vector3(1,0,0), new Vector3(-1,0,0),
@@ -31,6 +42,13 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead && dissolveValue < 2f)
+        {
+            dissolveValue += gameController.timeToDissolveEnemy * Time.deltaTime;
+            enemyMat.SetFloat("DissolveAmt", dissolveValue);
+            return;
+        }
+
         if(startYPos == 0) startYPos = transform.position.y;
 
         //Enemy movement logic
@@ -44,10 +62,21 @@ public class EnemyController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Destroyable") || hit.gameObject.CompareTag("NonDestroyable")
-            || hit.gameObject.CompareTag("OuterWall") || hit.gameObject.CompareTag("Bomb") || hit.gameObject.CompareTag("Enemy"))
+        if (isDead) return;
+
+        foreach(string _tag in gameController.tagsEnemyShouldCollideWith)
         {
-            walkDirection = enemyWalkingDirection[Random.Range(0, 4)];
+            if (hit.gameObject.CompareTag(_tag))
+            { 
+                walkDirection = enemyWalkingDirection[Random.Range(0, 4)];
+                break;
+            }
         }
+    }
+
+    public void KillEnemy()
+    {
+        isDead = true;
+        Destroy(gameObject, 2.5f);
     }
 }

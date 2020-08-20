@@ -9,6 +9,7 @@ TagManager:
   - OuterWall
   - Bomb
   - Enemy
+  - Explosion
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - BloomMobileEffect
   - Walls
   - Ground
-  - 
-  - 
-  - 
+  - Player
+  - NormalEnemy
+  - Explosion
   - 
   - 
   - 

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Diagnostics.Eventing.Reader;
+using Microsoft.Win32;
 
 [CustomEditor(typeof(LevelCreator))]
 [CanEditMultipleObjects]
 public class LevelEditor : Editor
 {
-    GameObject borderWallPrefab;
-    GameObject nonDestroyableWallPrefab;
-    GameObject destroyableWallPrefab;
+    GameObject borderWallPrefab, nonDestroyableWallPrefab, destroyableWallPrefab;
+    List<GameObject> enemyPrefabs;
+    List<int> noOfEachEnemies;
 
-    List<string> destroyableWallPositions;
+    List<string> destroyableWallPositions, enemyPositions;
 
     bool scriptActive;
 
@@ -23,10 +25,14 @@ public class LevelEditor : Editor
 
         create = (LevelCreator)target;
 
-        //Saving prefab references locally
+        //Saving wall prefab references locally
         borderWallPrefab = create.outerWall;
         nonDestroyableWallPrefab = create.nonDestroyableWall;
         destroyableWallPrefab = create.destroyableWall;
+
+        //Saving enemy prefab references locally
+        enemyPrefabs = create.enemies;
+        noOfEachEnemies = create.noOfEachEnemies;
 
         #region "Border creation/deletion"
         EditorGUILayout.BeginHorizontal();
@@ -102,6 +108,30 @@ public class LevelEditor : Editor
             }
         }
 
+        #endregion
+
+        EditorGUILayout.Space(20);
+
+        #region "Enemy placement"
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Place Enemies"))
+        {
+            if (!scriptActive) PlaceEnemies();
+        }
+        if (GUILayout.Button("Destroy Enemies"))
+        {
+            if (!scriptActive) DestroyAllChild(create.enemyHolder.transform);
+        }
+        EditorGUILayout.EndHorizontal();
+        #endregion
+
+        EditorGUILayout.Space(20);
+
+        #region "Player placement"
+        if (GUILayout.Button("Place Player"))
+        {
+            if (!scriptActive) PlacePlayer();
+        }
         #endregion
 
     }
@@ -214,6 +244,8 @@ public class LevelEditor : Editor
 
         scriptActive = true;
         DestroyAllChild(create.destroyableWallHolder.transform);
+        DestroyAllChild(create.enemyHolder.transform);
+        DestroyImmediate(GameObject.FindGameObjectWithTag("Player"));
 
         for (int a = 0; a < create.noOfDestroyableWalls; a++)
         {
@@ -268,13 +300,15 @@ public class LevelEditor : Editor
         {
             create.outerWallHolder.transform,
             create.nonDestroyableWallHolder.transform,
-            create.destroyableWallHolder.transform
+            create.destroyableWallHolder.transform,
+            create.enemyHolder.transform
         };
 
         foreach (Transform t in wallHolders)
         {
             DestroyAllChild(t);
         }
+        DestroyImmediate(GameObject.FindGameObjectWithTag("Player"));
     }
 
     //Destroy all childs of the given parent element
@@ -285,6 +319,114 @@ public class LevelEditor : Editor
         {
             DestroyImmediate(parentObj.GetChild(i).gameObject);
         }
+    }
+
+    List<Vector3> GetEmptyCells()
+    {
+        List<Vector3> _emptyCells = new List<Vector3>();
+
+        //Get destroyable walls positions to avoid overlap
+        Transform _destroyableWallHolder = create.destroyableWallHolder.transform;
+        int _destroyableWallCount = _destroyableWallHolder.childCount;
+        destroyableWallPositions = new List<string>();
+        for (int _child = 0; _child < _destroyableWallCount; _child++)
+        {
+            destroyableWallPositions.Add("X" + _destroyableWallHolder.GetChild(_child).position.x.ToString()
+                + "Z" + _destroyableWallHolder.GetChild(_child).position.z.ToString());
+        }
+
+        //Get enemy positions
+        Transform _enemyHolder = create.enemyHolder.transform;
+        int _enemyCount = _enemyHolder.childCount;
+        enemyPositions = new List<string>();
+        for (int _child = 0; _child < _enemyCount; _child++)
+        {
+            enemyPositions.Add("X" + _enemyHolder.GetChild(_child).position.x.ToString()
+                + "Z" + _enemyHolder.GetChild(_child).position.z.ToString());
+        }
+
+        //Find possible positions for placing enemies
+        for (int i = 1; i < create.gridSizeX - 1; i++)
+        {
+            for (int j = 1; j < create.gridSizeZ - 1; j++)
+            {
+                if (!(i % 2 == 0 && j % 2 == 0))
+                {
+                    float posX = create.startPos.x + i + create.enemyOffset.x;
+                    float posY = create.startPos.y;
+                    float posZ = create.startPos.z + j + create.enemyOffset.z;
+                    if (!destroyableWallPositions.Contains("X" + posX.ToString() + "Z" + posZ.ToString()))
+                    {
+                        _emptyCells.Add(new Vector3(posX, posY, posZ));
+
+                    }
+                }
+            }
+        }
+
+        return _emptyCells;
+    }
+
+    //Place enemies on empty cells as per the input parameters
+    void PlaceEnemies()
+    {
+        List<Vector3> _possibleEnemyPosition = GetEmptyCells();
+
+        if (destroyableWallPositions.Count == 0 || enemyPrefabs.Count == 0 || noOfEachEnemies.Count == 0)
+        {
+            Debug.LogError("Create valid number of destroyable walls || Mention valid number of enemies");
+            return;
+        }
+
+        scriptActive = true;
+        DestroyAllChild(create.enemyHolder.transform);
+        DestroyImmediate(GameObject.FindGameObjectWithTag("Player"));
+
+        //Choose random position to place enemy
+        for (int _enemyIndex = 0; _enemyIndex < enemyPrefabs.Count; _enemyIndex++)
+        {
+            for (int _enemyCount = 0; _enemyCount < noOfEachEnemies[_enemyIndex]; _enemyCount++)
+            {
+                int _posIndex = Random.Range(0, _possibleEnemyPosition.Count);
+                bool isValidPos = false;
+                int validityCounter = 0;
+
+                while (!isValidPos)
+                {
+                    validityCounter++;
+                    _posIndex = Random.Range(0, _possibleEnemyPosition.Count);
+                    if (!enemyPositions.Contains("X" + _possibleEnemyPosition[_posIndex].x.ToString()
+                        + "Z" + _possibleEnemyPosition[_posIndex].z.ToString())) isValidPos = true;
+
+                    if (validityCounter > _possibleEnemyPosition.Count) break;
+                }
+
+                if (!isValidPos)
+                {
+                    Debug.LogError("Not able to find a valid position for enemy");
+                    scriptActive = false;
+                    return;
+                }
+
+                Vector3 _validEnemyPos = _possibleEnemyPosition[_posIndex];
+                GameObject _enemy = (GameObject)PrefabUtility.InstantiatePrefab(enemyPrefabs[_enemyIndex]);
+                _enemy.transform.position = new Vector3(_validEnemyPos.x, _validEnemyPos.y + create.enemyOffset.y, _validEnemyPos.z);
+                _enemy.transform.parent = create.enemyHolder.transform;
+                enemyPositions.Add("X" + _validEnemyPos.x.ToString() + "Z" + _validEnemyPos.z.ToString());
+            }
+        }
+
+        scriptActive = false;
+    }
+
+    void PlacePlayer()
+    {
+        DestroyImmediate(GameObject.FindGameObjectWithTag("Player"));
+
+        List<Vector3> _positions = GetEmptyCells();
+        int p = Random.Range(0, _positions.Count);
+        GameObject _player = (GameObject)PrefabUtility.InstantiatePrefab(create.player);
+        _player.transform.position = new Vector3(_positions[p].x, _positions[p].y + create.playerOffset.y, _positions[p].z);
     }
 }
 

@@ -7,7 +7,7 @@ public class LevelCreator : MonoBehaviour
     public Vector3 startPos;
     public Vector3 offset;
 
-    [Header("Prefabs")]
+    [Header("Wall Prefabs")]
     public GameObject nonDestroyableWall;
     public GameObject destroyableWall;
     public GameObject outerWall;
@@ -25,8 +25,19 @@ public class LevelCreator : MonoBehaviour
     [Header("Num of Destroyable Walls")]
     public int noOfDestroyableWalls;
 
+    [Header("Enemy Creation")]
+    public Vector3 enemyOffset;
+    public List<GameObject> enemies;
+    public GameObject enemyHolder;
+
+    [Header("Num of Enemies")]
+    public List<int> noOfEachEnemies;
+
+    [Header("Player Placement")]
+    public GameObject player;
+    public Vector3 playerOffset;
+    
     [Header("Layermasks")]
     public LayerMask layerMask;
-
 
 }

@@ -38,6 +38,7 @@ public class BombController : MonoBehaviour
             {
                 isRigid = true;
                 GetComponent<BoxCollider>().enabled = true;
+                player.GetComponent<PlayerController2>().godMode = false;
             }
         }
     }
@@ -180,6 +181,8 @@ public class BombController : MonoBehaviour
 
     private void DestroyWalls(GameObject _wallToDestroy)
     {
+        if (_wallToDestroy == null) return;
+
         GameObject _wallDestroyEffect = Instantiate(gameController.wallDestroyPrefab, gameController.explosionHolder.transform);
         _wallDestroyEffect.transform.position = _wallToDestroy.transform.position;
         Destroy(_wallToDestroy);

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public GameObject player;
+    public bool gameOver;
 
     [Header("Bomb")]
     public GameObject bombPrefab;
@@ -28,6 +30,8 @@ public class GameController : MonoBehaviour
     public float timeToDissolveEnemy;
     public List<string> tagsEnemyShouldCollideWith;
 
+    private PlayerController2 playerController;
+
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
 
@@ -47,6 +51,7 @@ public class GameController : MonoBehaviour
     {
         //Get player reference
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController2>();
 
         //Initialize list for storing active bombs
         activeBombs = new List<GameObject>();
@@ -62,7 +67,12 @@ public class GameController : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlaceBomb();
+            if (!playerController.isDead)
+                PlaceBomb();
+            else
+            {
+                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            }
         }
 
 #endif
@@ -73,6 +83,7 @@ public class GameController : MonoBehaviour
     {
         GameObject placedBomb = Instantiate(bombPrefab, bombHolder.transform);
 
+        playerController.godMode = true;
         Vector3 playerPos = player.transform.position;
         placedBomb.transform.position = new Vector3(Mathf.Floor(playerPos.x) + 0.5f, placedBomb.transform.position.y, Mathf.Floor(playerPos.z) + 0.5f);
         activeBombs.Add(placedBomb);

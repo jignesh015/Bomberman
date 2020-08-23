@@ -19,8 +19,9 @@ public class ExplosionTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-        {
             other.GetComponent<EnemyController>().KillEnemy();
-        }
+
+        if (other.gameObject.CompareTag("Player"))
+            other.GetComponent<PlayerController2>().KillPlayer();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using EZCameraShake;
 
 public class GameController : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class GameController : MonoBehaviour
     [Header("Enemies")]
     public float timeToDissolveEnemy;
     public List<string> tagsEnemyShouldCollideWith;
+
+    [Header("Camera Shake properties")]
+    public float shakeMagnitude;
+    public float shakeRoughness, shakeFadeInTime, shakeFadeOutTime;
 
     private PlayerController2 playerController;
 
@@ -131,6 +136,11 @@ public class GameController : MonoBehaviour
         }
 
         return activeBombsPositionDict;
+    }
+
+    public void ShakeCamera()
+    {
+        CameraShaker.Instance.ShakeOnce(shakeMagnitude, shakeRoughness, shakeFadeInTime, shakeFadeOutTime);  
     }
 
     #endregion

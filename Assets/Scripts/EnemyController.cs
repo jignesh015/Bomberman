@@ -19,6 +19,11 @@ public class EnemyController : MonoBehaviour
 
     public float startYPos = 0;
 
+    [Header("Variables for adding force")]
+    public float force;
+    public Vector3 forceDir;
+    private Rigidbody rigidbody;
+
     private bool isDead;
     private float dissolveValue, turnSmoothVelocity;
     private Material[] enemyMat;
@@ -27,6 +32,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.isKinematic = true;
         gameController = GameController.Instance;
 
         enemyMat = new Material[mainRenderers.Length];
@@ -53,11 +60,14 @@ public class EnemyController : MonoBehaviour
         {
             dissolveValue += gameController.timeToDissolveEnemy * Time.deltaTime;
             foreach (Material _mat in enemyMat)
-            { 
+            {
                 _mat.SetFloat("DissolveAmt", dissolveValue);
             }
+
             return;
         }
+
+        if (isDead) return;
 
         if(startYPos == 0) startYPos = transform.position.y;
 
@@ -71,6 +81,18 @@ public class EnemyController : MonoBehaviour
 
             enemy.Move(walkDirection * speed * Time.deltaTime);
             if (startYPos != 0) enemy.transform.position = new Vector3(enemy.transform.position.x, startYPos, enemy.transform.position.z);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDead)
+        {
+            //Make character fly!!
+            rigidbody.isKinematic = false;
+            //rigidbody.AddForce((gameController.mainCamera.transform.position - transform.position) , ForceMode.Impulse);
+            rigidbody.AddExplosionForce(force, gameController.lastBombOrigin, gameController.explosionRange + 10, 5, ForceMode.Impulse);
+            rigidbody.angularVelocity = new Vector3(2, 2, 2);
         }
     }
 

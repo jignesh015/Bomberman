@@ -13,14 +13,23 @@ public class BombController : MonoBehaviour
     private List<GameObject> explosionTrails;
     private GameController gameController;
 
+    private float bombPlaceTime;
+
     // Start is called before the first frame update
     void Start()
     {
         gameController = GameController.Instance;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         explosionTrails = new List<GameObject>();
-        if (!hasDetonator)
-            Explode(explodeTime);
+        bombPlaceTime = Time.time;
+
+        if (!hasDetonator) Explode(explodeTime);
+    }
+
+    private void OnEnable()
+    {
+        
+
     }
 
     // Update is called once per frame
@@ -40,6 +49,7 @@ public class BombController : MonoBehaviour
                 GetComponent<BoxCollider>().enabled = true;
                 player.GetComponent<PlayerController2>().godMode = false;
             }
+            if (Time.time - bombPlaceTime > 0.75f) player.GetComponent<PlayerController2>().godMode = false;
         }
     }
 
@@ -66,6 +76,7 @@ public class BombController : MonoBehaviour
         Destroy(gameObject, gameController.explosionDuration);
         gameController.activeBombs.RemoveAt(0);
         gameController.ShakeCamera();
+        gameController.lastBombOrigin = _bombOrigin;
 
         GameObject explosion = GetExplosionGameObject();
         explosionTrails.Add(explosion);

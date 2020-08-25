@@ -6,7 +6,7 @@ using EZCameraShake;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject player, mainCamera;
     public bool gameOver;
 
     [Header("Bomb")]
@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     [Range(1, 10)]
     public int explosionRange = 1;
     public float explosionDuration;
+    public Vector3 lastBombOrigin;
 
     [Header("List of walls position")]
     public Dictionary<string, GameObject> destroyableWallsPositionDict;
@@ -56,6 +57,7 @@ public class GameController : MonoBehaviour
     {
         //Get player reference
         player = GameObject.FindGameObjectWithTag("Player");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         playerController = player.GetComponent<PlayerController2>();
 
         //Initialize list for storing active bombs

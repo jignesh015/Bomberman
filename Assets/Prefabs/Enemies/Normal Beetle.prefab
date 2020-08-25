@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 442416231248068317}
   - component: {fileID: 442416231248068318}
   - component: {fileID: 442416231248068319}
+  - component: {fileID: -790531219368059488}
   m_Layer: 12
   m_Name: Normal Beetle
   m_TagString: Enemy
@@ -73,6 +74,24 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   lives: 1
   startYPos: 0
+  force: 5
+  forceDir: {x: 0, y: 1, z: 0}
+--- !u!54 &-790531219368059488
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442416231248068316}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &106016251266669887
 PrefabInstance:
   m_ObjectHideFlags: 0

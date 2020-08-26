@@ -27,12 +27,17 @@ public class EnemyController : MonoBehaviour
     private bool isDead;
     private float dissolveValue, turnSmoothVelocity;
     private Material[] enemyMat;
+    private GameObject trail;
+
     private GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponent<CharacterController>();
         rigidbody = GetComponent<Rigidbody>();
+        trail = transform.GetChild(1).gameObject;
+        if (trail != null) trail.SetActive(false);
+
         rigidbody.isKinematic = true;
         gameController = GameController.Instance;
 
@@ -125,5 +130,11 @@ public class EnemyController : MonoBehaviour
     {
         isDead = true;
         Destroy(gameObject, 2.5f);
+
+        //Spawn trail
+        if (trail != null && trail.transform.GetComponent<ParticleSystem>() != null)
+        {
+            trail.SetActive(true);
+        }
     }
 }

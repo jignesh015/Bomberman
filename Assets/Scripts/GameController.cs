@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using EZCameraShake;
+using Cinemachine;
+using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
@@ -33,8 +34,10 @@ public class GameController : MonoBehaviour
     public List<string> tagsEnemyShouldCollideWith;
 
     [Header("Camera Shake properties")]
-    public float shakeMagnitude;
-    public float shakeRoughness, shakeFadeInTime, shakeFadeOutTime;
+    public float shakeDuration = 0.3f;
+    public float shakeAmplitude = 1.2f, shakeFrequency = 2.0f;
+    public CinemachineVirtualCamera VirtualCamera;
+    public CinemachineCameraShaker cameraShaker;
 
     private PlayerController2 playerController;
 
@@ -59,6 +62,10 @@ public class GameController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         playerController = player.GetComponent<PlayerController2>();
+
+        //Assign player to virtual camera
+        VirtualCamera.Follow = player.transform;
+        VirtualCamera.LookAt = player.transform;
 
         //Initialize list for storing active bombs
         activeBombs = new List<GameObject>();
@@ -88,11 +95,17 @@ public class GameController : MonoBehaviour
     //Place bomb at player's current location
     public void PlaceBomb()
     {
-        GameObject placedBomb = Instantiate(bombPrefab, bombHolder.transform);
-
-        playerController.godMode = true;
         Vector3 playerPos = player.transform.position;
-        placedBomb.transform.position = new Vector3(Mathf.Floor(playerPos.x) + 0.5f, placedBomb.transform.position.y, Mathf.Floor(playerPos.z) + 0.5f);
+        Vector3 _posToPlaceBomb = new Vector3(Mathf.Floor(playerPos.x) + 0.5f, 0, Mathf.Floor(playerPos.z) + 0.5f);
+        if (GetActiveBombsPosition().ContainsKey("X" + _posToPlaceBomb.x.ToString() + "Z" + _posToPlaceBomb.z.ToString()))
+        {
+            Debug.Log("Bomb already placed at this location");
+            return;
+        }
+        
+        playerController.indestructible = true;
+        GameObject placedBomb = Instantiate(bombPrefab, bombHolder.transform);
+        placedBomb.transform.position = new Vector3(_posToPlaceBomb.x, placedBomb.transform.position.y, _posToPlaceBomb.z);
         activeBombs.Add(placedBomb);
     }
 
@@ -142,7 +155,7 @@ public class GameController : MonoBehaviour
 
     public void ShakeCamera()
     {
-        CameraShaker.Instance.ShakeOnce(shakeMagnitude, shakeRoughness, shakeFadeInTime, shakeFadeOutTime);  
+        cameraShaker.CinemachineShake();
     }
 
     #endregion

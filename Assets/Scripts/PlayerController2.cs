@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController2 : MonoBehaviour
 {
     public bool godMode;
+    [HideInInspector]
+    public bool indestructible = false;
     public CharacterController player;
     public Animator animator;
     public Renderer[] mainRenderers;
@@ -13,7 +15,7 @@ public class PlayerController2 : MonoBehaviour
     public bool isDead;
 
     Vector3 direction;
-    float dissolveValue, turnSmoothVelocity;
+    float dissolveValue, turnSmoothVelocity, startYPos;
     List<Material> playerMats;
 
     // Start is called before the first frame update
@@ -35,6 +37,8 @@ public class PlayerController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startYPos == 0) startYPos = transform.position.y;
+
         if (!isDead)
         {
             direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
@@ -47,6 +51,7 @@ public class PlayerController2 : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 player.Move(direction * speed * Time.deltaTime);
+                if (startYPos != 0) player.transform.position = new Vector3(player.transform.position.x, startYPos, player.transform.position.z);
             }
         }
 
@@ -73,7 +78,7 @@ public class PlayerController2 : MonoBehaviour
 
     public void KillPlayer()
     {
-        if (isDead || godMode) return;
+        if (isDead || indestructible || godMode) return;
 
         isDead = true;
         GameController.Instance.gameOver = true;

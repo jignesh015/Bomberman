@@ -47,9 +47,9 @@ public class BombController : MonoBehaviour
             {
                 isRigid = true;
                 GetComponent<BoxCollider>().enabled = true;
-                player.GetComponent<PlayerController2>().godMode = false;
+                player.GetComponent<PlayerController2>().indestructible = false;
             }
-            if (Time.time - bombPlaceTime > 0.75f) player.GetComponent<PlayerController2>().godMode = false;
+            if (Time.time - bombPlaceTime > 0.75f) player.GetComponent<PlayerController2>().indestructible = false;
         }
     }
 

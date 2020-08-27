@@ -8948,7 +8948,7 @@ MonoBehaviour:
     type: 3}
   bombHolder: {fileID: 1550263081}
   activeBombs: []
-  explosionPrefab: {fileID: 5658108236413580326, guid: b83e6e866abad234097ee9f94ae06bf5,
+  explosionPrefab: {fileID: 5658108236413580326, guid: 90fa0478f6312104ebfcf61b519e112d,
     type: 3}
   wallDestroyPrefab: {fileID: 5497355555151363664, guid: 6247414be127a4543ae664ae4efb27dd,
     type: 3}

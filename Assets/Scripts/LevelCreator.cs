@@ -11,7 +11,7 @@ public class LevelCreator : MonoBehaviour
     public GameObject nonDestroyableWall;
     public GameObject destroyableWall;
     public GameObject outerWall;
-    public GameObject groundPlane;
+    public GameObject groundPlane, cameraBoundingBox;
 
     [Header("PrefabHolders")]
     public GameObject nonDestroyableWallHolder;

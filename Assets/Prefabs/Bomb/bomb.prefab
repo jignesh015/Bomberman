@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5134073113986739282}
   - component: {fileID: 4650809598638766304}
   - component: {fileID: 65921518923965500}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bomblvl1_pPipe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 834369510797319019}
   - component: {fileID: 3584978122901337274}
   - component: {fileID: 1496801431454164011}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bomblvl1_pSphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2147271796289854338}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2350679247459729508}
   - component: {fileID: 6752246376368232061}
   - component: {fileID: 4046760563337237406}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pCylinder14_bomblvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 3745478521813184556}
   - component: {fileID: 4350092226831940495}
   - component: {fileID: 5186465774164236583}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5036,7 +5036,7 @@ GameObject:
   - component: {fileID: 6392314986722974497}
   - component: {fileID: 6896853076230766879}
   - component: {fileID: 6872833020633631504}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}

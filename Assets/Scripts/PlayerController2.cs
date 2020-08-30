@@ -6,7 +6,7 @@ public class PlayerController2 : MonoBehaviour
 {
     public bool godMode;
     [HideInInspector]
-    public bool indestructible = false;
+    public bool indestructible = false, ghostMode = false;
     public CharacterController player;
     public Animator animator;
     public Renderer[] mainRenderers;

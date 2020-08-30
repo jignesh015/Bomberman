@@ -193,6 +193,11 @@ public class LevelEditor : Editor
         //SET MATERIAL TILING
         create.groundPlane.GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(
             create.gridSizeX, create.gridSizeZ);
+
+        //SET BOUNDING BOX SIZE & POSITION
+        create.cameraBoundingBox.transform.position = create.groundPlane.transform.position;
+        create.cameraBoundingBox.transform.localScale = new Vector3(create.gridSizeX + 0.5f,
+            create.cameraBoundingBox.transform.localScale.y, create.gridSizeZ + 0.5f);
     }
 
     //Creates inner indestructible walls

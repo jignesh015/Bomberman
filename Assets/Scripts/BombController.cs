@@ -74,7 +74,8 @@ public class BombController : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         Invoke("DestroyTrails", gameController.explosionDuration);
         Destroy(gameObject, gameController.explosionDuration);
-        gameController.activeBombs.RemoveAt(0);
+        //gameController.activeBombs.RemoveAt(0);
+        gameController.activeBombs.Remove(gameObject);
         gameController.ShakeCamera();
         gameController.lastBombOrigin = _bombOrigin;
 

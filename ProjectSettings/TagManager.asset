@@ -19,14 +19,14 @@ TagManager:
   - UI
   - 
   - 
-  - BloomMobileEffect
-  - Walls
+  - NonDestroyableWall
+  - DestroyableWall
   - Ground
   - Player
-  - NormalEnemy
+  - Bomb
   - Explosion
-  - 
-  - 
+  - NormalEnemy
+  - GhostEnemy
   - 
   - 
   - 

@@ -76,17 +76,13 @@ public class EnemyController : MonoBehaviour
 
         if(startYPos == 0) startYPos = transform.position.y;
 
-        //Enemy movement logic
-        if (enemyType == EnemyType.Normal)
-        {
-            //Move forward if path is open
-            float targetAngle = Mathf.Atan2(walkDirection.x, walkDirection.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        //Move forward if path is open
+        float targetAngle = Mathf.Atan2(walkDirection.x, walkDirection.z) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            enemy.Move(walkDirection * speed * Time.deltaTime);
-            if (startYPos != 0) enemy.transform.position = new Vector3(enemy.transform.position.x, startYPos, enemy.transform.position.z);
-        }
+        enemy.Move(walkDirection * speed * Time.deltaTime);
+        if (startYPos != 0) enemy.transform.position = new Vector3(enemy.transform.position.x, startYPos, enemy.transform.position.z);
     }
 
     private void FixedUpdate()
@@ -128,6 +124,8 @@ public class EnemyController : MonoBehaviour
 
     public void KillEnemy()
     {
+        if (isDead) return;
+
         isDead = true;
         Destroy(gameObject, 2.5f);
 

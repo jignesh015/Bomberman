@@ -167,9 +167,12 @@ MonoBehaviour:
   speed: 2
   turnSmoothTime: 0.1
   lives: 1
-  startYPos: 0
   force: 5
   forceDir: {x: 0, y: 1, z: 0}
+  minRandomDistance: 1
+  maxRandomDistance: 10
+  currentGridPos: {x: 0, y: 0}
+  gridPosAtDirectionChange: {x: 0, y: 0}
 --- !u!54 &-790531219368059488
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour
 {
-    public bool godMode;
     [HideInInspector]
     public bool indestructible = false, ghostMode = false;
     public CharacterController player;
@@ -14,14 +13,20 @@ public class PlayerController2 : MonoBehaviour
     public float speed = 6f, turnSmoothTime = 0.1f, timeToDissolve;
     public bool isDead;
 
+    [Header("FOR DEBUGGING PURPOSE ONLY")]
+    public bool godMode;
+    public bool enableGhostMode;
+
     Vector3 direction;
     float dissolveValue, turnSmoothVelocity, startYPos;
     List<Material> playerMats;
+    private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
         isDead = false;
+        gameController = GameController.Instance;
 
         playerMats = new List<Material>();
         for (int i = 0; i < mainRenderers.Length; i++)
@@ -73,6 +78,9 @@ public class PlayerController2 : MonoBehaviour
                 _mat.SetFloat("DissolveAmt", 0);
             }
         }
+
+        //For debugging purpose
+        if (enableGhostMode && !ghostMode) gameController.TogglePlayerGhostMode(true);
 
     }
 

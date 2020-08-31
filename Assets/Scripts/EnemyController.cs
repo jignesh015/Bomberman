@@ -17,28 +17,37 @@ public class EnemyController : MonoBehaviour
     public float speed, turnSmoothTime = 0.1f;
     public int lives = 1;
 
-    public float startYPos = 0;
-
     [Header("Variables for adding force")]
     public float force;
     public Vector3 forceDir;
-    private Rigidbody rigidbody;
+    private Rigidbody enemyRigidbody;
 
-    private bool isDead;
-    private float dissolveValue, turnSmoothVelocity;
+    [Header("Variables for randomizing movement")]
+    public float minRandomDistance;
+    public float maxRandomDistance;
+
+    #region "Private variables"
+    private bool isDead, changeDirectionRandomly;
+    private float startYPos = 0,dissolveValue, turnSmoothVelocity, randomWalkDistance;
     private Material[] enemyMat;
     private GameObject trail;
+
+    [SerializeField]
+    private Vector2 currentGridPos, gridPosAtDirectionChange;
+    private Vector3 currentEnemyPos;
+    #endregion
+
 
     private GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponent<CharacterController>();
-        rigidbody = GetComponent<Rigidbody>();
+        enemyRigidbody = GetComponent<Rigidbody>();
         trail = transform.GetChild(1).gameObject;
         if (trail != null) trail.SetActive(false);
 
-        rigidbody.isKinematic = true;
+        enemyRigidbody.isKinematic = true;
         gameController = GameController.Instance;
 
         enemyMat = new Material[mainRenderers.Length];
@@ -80,9 +89,24 @@ public class EnemyController : MonoBehaviour
         float targetAngle = Mathf.Atan2(walkDirection.x, walkDirection.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
         enemy.Move(walkDirection * speed * Time.deltaTime);
         if (startYPos != 0) enemy.transform.position = new Vector3(enemy.transform.position.x, startYPos, enemy.transform.position.z);
+        currentEnemyPos = enemy.transform.position;
+
+
+        //Change walk direction after random intervals
+        currentGridPos = new Vector2(Mathf.Floor(currentEnemyPos.x) + 0.5f,Mathf.Floor(currentEnemyPos.z) + 0.5f);
+        if (Vector2.Distance(currentGridPos, gridPosAtDirectionChange) > randomWalkDistance && !changeDirectionRandomly)
+            changeDirectionRandomly = true;
+
+        if (changeDirectionRandomly)
+        {
+            if (!(Mathf.Floor(currentEnemyPos.x) % 2 == 0 && Mathf.Floor(currentEnemyPos.z) % 2 == 0) 
+                && Vector2.Distance(currentGridPos, new Vector2(currentEnemyPos.x, currentEnemyPos.z)) < 0.05f)
+                RandomizeDirection();
+        }
+
+        
     }
 
     private void FixedUpdate()
@@ -90,10 +114,9 @@ public class EnemyController : MonoBehaviour
         if (isDead)
         {
             //Make character fly!!
-            rigidbody.isKinematic = false;
-            //rigidbody.AddForce((gameController.mainCamera.transform.position - transform.position) , ForceMode.Impulse);
-            rigidbody.AddExplosionForce(force, gameController.lastBombOrigin, gameController.explosionRange + 10, 5, ForceMode.Impulse);
-            rigidbody.angularVelocity = new Vector3(2, 2, 2);
+            enemyRigidbody.isKinematic = false;
+            enemyRigidbody.AddExplosionForce(force, gameController.lastBombOrigin, gameController.explosionRange + 10, 5, ForceMode.Impulse);
+            enemyRigidbody.angularVelocity = new Vector3(2, 2, 2);
         }
     }
 
@@ -103,7 +126,7 @@ public class EnemyController : MonoBehaviour
 
         if (hit.gameObject.CompareTag("Player"))
         {
-            walkDirection = enemyWalkingDirection[Random.Range(0, 4)];
+            RandomizeDirection();
             hit.gameObject.GetComponent<PlayerController2>().KillPlayer();
         }
 
@@ -119,7 +142,10 @@ public class EnemyController : MonoBehaviour
 
     void RandomizeDirection()
     {
+        changeDirectionRandomly = false;
+        randomWalkDistance = Random.Range(minRandomDistance, maxRandomDistance);
         walkDirection = enemyWalkingDirection[Random.Range(0, 4)];
+        gridPosAtDirectionChange = new Vector2(Mathf.Floor(currentEnemyPos.x) + 0.5f, Mathf.Floor(currentEnemyPos.z) + 0.5f);
     }
 
     public void KillEnemy()

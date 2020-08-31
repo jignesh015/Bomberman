@@ -4830,9 +4830,12 @@ MonoBehaviour:
   speed: 3
   turnSmoothTime: 0.1
   lives: 1
-  startYPos: 0
   force: 5
   forceDir: {x: 0, y: 1, z: 0}
+  minRandomDistance: 5
+  maxRandomDistance: 8
+  currentGridPos: {x: 0, y: 0}
+  gridPosAtDirectionChange: {x: 0, y: 0}
 --- !u!54 &8554919621209657165
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4975,7 +4978,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a61b957b3e9dac548bf398e195e71387,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a61b957b3e9dac548bf398e195e71387,
         type: 3}

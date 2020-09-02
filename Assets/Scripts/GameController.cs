@@ -13,7 +13,9 @@ public class GameController : MonoBehaviour
     [Header("Bomb")]
     public GameObject bombPrefab;
     public GameObject bombHolder;
+    public List<string> tagsBombShouldCollideWith;
     public List<GameObject> activeBombs;
+    [HideInInspector]
     public Dictionary<string, GameObject> activeBombsPositionDict;
 
     [Header("Explosion")]

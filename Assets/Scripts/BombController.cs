@@ -9,11 +9,12 @@ public class BombController : MonoBehaviour
     public float explodeTime = 4f;
     private Transform player;
     private bool shouldTween = true;
-    private bool isRigid = false;
+    private bool isRigid = false, shouldPush = false;
     private List<GameObject> explosionTrails;
     private GameController gameController;
 
     private float bombPlaceTime;
+    private Vector3 pushToPos;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,18 @@ public class BombController : MonoBehaviour
         if (!hasDetonator) Explode(explodeTime);
     }
 
-    private void OnEnable()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-
+        foreach (string _tag in gameController.tagsBombShouldCollideWith)
+        {
+            if (collision.gameObject.CompareTag(_tag))
+            {
+                shouldPush = false;
+                transform.position = new Vector3(Mathf.Floor(transform.position.x) + 0.5f, 
+                    0, Mathf.Floor(transform.position.z) + 0.5f);
+                GetComponent<Rigidbody>().isKinematic = true;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +60,13 @@ public class BombController : MonoBehaviour
             }
             if (Time.time - bombPlaceTime > 0.75f) player.GetComponent<PlayerController2>().indestructible = false;
         }
+
+        if (shouldPush)
+        {
+            transform.position = Vector3.Lerp(transform.position, pushToPos, Time.deltaTime * 5f);
+            if (Vector3.Distance(transform.position, pushToPos) < 0.1f) shouldPush = false;
+        }
+
     }
 
     public void Explode()
@@ -68,6 +84,10 @@ public class BombController : MonoBehaviour
     public IEnumerator DoExplosion(Vector3 _bombOrigin, float _explodeTime)
     {
         yield return new WaitForSeconds(_explodeTime);
+
+        //Update bomb origin
+        _bombOrigin = new Vector3(Mathf.Floor(transform.position.x) + 0.5f, 
+            0, Mathf.Floor(transform.position.z) + 0.5f);
 
         //Hide bomb 
         GetComponent<BoxCollider>().enabled = false;
@@ -204,5 +224,15 @@ public class BombController : MonoBehaviour
     private void DestroyTrails()
     {
         foreach (GameObject _obj in explosionTrails) { Destroy(_obj); }
+    }
+
+    public void PushBomb(Vector3 _direction)
+    {
+        GetComponent<Rigidbody>().isKinematic = false;
+        shouldPush = true;
+        pushToPos = new Vector3(transform.position.x + (_direction.x * 2),
+            transform.position.y, transform.position.z + (_direction.z * 2));
+
+
     }
 }

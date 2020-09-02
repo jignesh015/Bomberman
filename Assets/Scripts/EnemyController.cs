@@ -128,6 +128,18 @@ public class EnemyController : MonoBehaviour
         {
             RandomizeDirection();
             hit.gameObject.GetComponent<PlayerController2>().KillPlayer();
+            return;
+        }
+
+        if (enemyType == EnemyType.Hitter && hit.gameObject.CompareTag("Bomb"))
+        {
+            //Push bomb
+            hit.gameObject.GetComponent<BombController>().PushBomb(walkDirection);
+
+            //Go to opposite direction
+            walkDirection *= -1;
+            return;
+
         }
 
         foreach (string _tag in gameController.tagsEnemyShouldCollideWith)
@@ -160,5 +172,14 @@ public class EnemyController : MonoBehaviour
         {
             trail.SetActive(true);
         }
+    }
+
+    public void HitBomb(GameObject _bomb, Vector3 _hitDirection)
+    {
+        Rigidbody _rb = _bomb.GetComponent<Rigidbody>();
+        if (!_rb) return;
+
+        _rb.isKinematic = false;
+        _rb.AddForce(_hitDirection * 200f);
     }
 }

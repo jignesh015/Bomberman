@@ -9,6 +9,7 @@ public class PlayerController2 : MonoBehaviour
     public CharacterController player;
     public Animator animator;
     public Renderer[] mainRenderers;
+    public ParticleSystem trailEffect;
 
     public float speed = 6f, turnSmoothTime = 0.1f, timeToDissolve;
     public bool isDead;
@@ -43,6 +44,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         if (startYPos == 0) startYPos = transform.position.y;
+        //trailEffect.gameObject.SetActive(false);
 
         if (!isDead)
         {
@@ -57,7 +59,11 @@ public class PlayerController2 : MonoBehaviour
 
                 player.Move(direction * speed * Time.deltaTime);
                 if (startYPos != 0) player.transform.position = new Vector3(player.transform.position.x, startYPos, player.transform.position.z);
+
+                //Play trail effect
+                trailEffect.Play();
             }
+            else trailEffect.Stop();
         }
 
         if (isDead && dissolveValue < 2f)

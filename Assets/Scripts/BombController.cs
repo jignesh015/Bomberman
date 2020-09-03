@@ -11,16 +11,18 @@ public class BombController : MonoBehaviour
     private bool shouldTween = true;
     private bool isRigid = false, shouldPush = false;
     private List<GameObject> explosionTrails;
-    private GameController gameController;
+    private ParticleSystem trailEffect;
 
     private float bombPlaceTime;
     private Vector3 pushToPos;
+    private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = GameController.Instance;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        trailEffect = transform.GetChild(1).GetComponent<ParticleSystem>();
         explosionTrails = new List<GameObject>();
         bombPlaceTime = Time.time;
 
@@ -31,13 +33,7 @@ public class BombController : MonoBehaviour
     {
         foreach (string _tag in gameController.tagsBombShouldCollideWith)
         {
-            if (collision.gameObject.CompareTag(_tag))
-            {
-                shouldPush = false;
-                transform.position = new Vector3(Mathf.Floor(transform.position.x) + 0.5f, 
-                    0, Mathf.Floor(transform.position.z) + 0.5f);
-                GetComponent<Rigidbody>().isKinematic = true;
-            }
+            if (collision.gameObject.CompareTag(_tag)) StopPushingBomb();
         }
     }
 
@@ -64,7 +60,7 @@ public class BombController : MonoBehaviour
         if (shouldPush)
         {
             transform.position = Vector3.Lerp(transform.position, pushToPos, Time.deltaTime * 5f);
-            if (Vector3.Distance(transform.position, pushToPos) < 0.1f) shouldPush = false;
+            if (Vector3.Distance(transform.position, pushToPos) < 0.1f) StopPushingBomb();
         }
 
     }
@@ -233,6 +229,15 @@ public class BombController : MonoBehaviour
         pushToPos = new Vector3(transform.position.x + (_direction.x * 2),
             transform.position.y, transform.position.z + (_direction.z * 2));
 
+        if(trailEffect) trailEffect.Play();
+    }
 
+    private void StopPushingBomb()
+    {
+        shouldPush = false;
+        transform.position = new Vector3(Mathf.Floor(transform.position.x) + 0.5f,
+            0, Mathf.Floor(transform.position.z) + 0.5f);
+        GetComponent<Rigidbody>().isKinematic = true;
+        if(trailEffect) trailEffect.Stop();
     }
 }

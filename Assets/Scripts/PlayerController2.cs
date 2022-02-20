@@ -62,6 +62,9 @@ public class PlayerController2 : MonoBehaviour
 
                 //Play trail effect
                 trailEffect.Play();
+
+                //Play walking SFX
+                SFXManager.Instance.PlayerWalkingSFX();
             }
             else trailEffect.Stop();
         }

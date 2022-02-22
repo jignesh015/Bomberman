@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using UnityEngine.Rendering;
@@ -47,7 +48,14 @@ public class GameController : MonoBehaviour
     private LevelManager level;
     private PlayerController2 playerController;
     public JewelSpawnerController jewelSpawner;
+    public JewelCollectionController jewelCollectionController;
     public CinemachineConfiner cinemachineConfiner;
+
+    [Header("Score UI")]
+    public Text scoreText;
+    public Text jewelsCollectedText;
+
+    [HideInInspector] public bool isPopupOpen;
 
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
@@ -156,7 +164,6 @@ public class GameController : MonoBehaviour
     {
         cameraShaker.CinemachineShake();
     }
-
     #endregion
 
     #region "Store walls and bombs position in a list"
@@ -217,5 +224,13 @@ public class GameController : MonoBehaviour
         return _gridSize;
     }
 
+    #endregion
+
+    #region "Score Display Management"
+    public void DisplayScore(int _gameScore, int _jewelsCount)
+    {
+        scoreText.text = string.Format("Score : {0}", _gameScore);
+        jewelsCollectedText.text = string.Format("Jewels Collected : {0}", _jewelsCount);
+    }
     #endregion
 }

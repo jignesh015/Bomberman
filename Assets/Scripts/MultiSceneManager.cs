@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -70,6 +71,30 @@ public class MultiSceneManager : MonoBehaviour
         ToggleLoadingScreen(false);
     }
 
+    #region "UI Canvas Handlers"
+    public void OpenCanvas<T>(string canvasName, Action<T> onOpened = null) where T : UIManager
+    {
+        if (FindObjectOfType<T>() == null)
+            StartCoroutine(OpenCanvasAsync(canvasName, onOpened));
+    }
+
+    private IEnumerator OpenCanvasAsync<T>(string canvasName, Action<T> onOpened) where T : UIManager
+    {
+        var request = Resources.LoadAsync<GameObject>(canvasName);
+        while (!request.isDone)
+        {
+            yield return null;
+        }
+
+        var canvasObj = Instantiate(request.asset) as GameObject;
+        if (canvasObj != null && onOpened != null)
+        {
+            onOpened(canvasObj.GetComponent<T>());
+        }
+    }
+    #endregion
+
+    #region "Scene Load/Unload"
     private IEnumerator LoadSceneAdditive(string _sceneName)
     {
         Scene _scene = SceneManager.GetSceneByName(_sceneName);
@@ -102,6 +127,6 @@ public class MultiSceneManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
-
+    #endregion
 
 }

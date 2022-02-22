@@ -23,6 +23,8 @@ public class PlayerController2 : MonoBehaviour
     List<Material> playerMats;
     private GameController gameController;
 
+    private GameObject previousHitJewel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,12 @@ public class PlayerController2 : MonoBehaviour
     {
         if (startYPos == 0) startYPos = transform.position.y;
         //trailEffect.gameObject.SetActive(false);
+
+        if (GameController.Instance.isPopupOpen)
+        {
+            trailEffect.Stop();
+            return;
+        }
 
         if (!isDead)
         {
@@ -111,7 +119,9 @@ public class PlayerController2 : MonoBehaviour
 
         if (hit.gameObject.CompareTag("Jewel"))
         {
-            Debug.LogFormat("Hit {0}", hit.gameObject.GetComponent<Jewel>().jewelSides);
+            if (previousHitJewel != null && previousHitJewel == hit.gameObject) return;
+            previousHitJewel = hit.gameObject;
+            GameController.Instance.jewelCollectionController.OnCollisionWithJewel(hit.gameObject.GetComponent<Jewel>());
         }
     }
 }

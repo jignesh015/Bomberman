@@ -10,6 +10,7 @@ using Microsoft.Win32;
 public class LevelEditor : Editor
 {
     GameObject borderWallPrefab, nonDestroyableWallPrefab, destroyableWallPrefab;
+    GameObject groundPlanePrefab, cameraBoundingBoxPrefab;
     List<GameObject> enemyPrefabs;
     List<int> noOfEachEnemies;
 
@@ -29,6 +30,8 @@ public class LevelEditor : Editor
         borderWallPrefab = create.outerWall;
         nonDestroyableWallPrefab = create.nonDestroyableWall;
         destroyableWallPrefab = create.destroyableWall;
+        groundPlanePrefab = create.groundPlane;
+        cameraBoundingBoxPrefab = create.cameraBoundingBox;
 
         //Saving enemy prefab references locally
         enemyPrefabs = create.enemies;
@@ -184,20 +187,28 @@ public class LevelEditor : Editor
     void ResizeGroundPlane() {
         Vector3 scaler = new Vector3((float)create.gridSizeX / 10, 1, (float)create.gridSizeZ / 10);
 
+        //INSTANTIATE GROUND PLANE AND CAM BOUNDING BOX
+        GameObject groundPlane = (GameObject)PrefabUtility.InstantiatePrefab(groundPlanePrefab);
+        GameObject cameraBoundingBox = (GameObject)PrefabUtility.InstantiatePrefab(cameraBoundingBoxPrefab);
+
+        //SET PARENT
+        groundPlane.transform.parent = create.groundHolder.transform;
+        cameraBoundingBox.transform.parent = create.groundHolder.transform;
+
         //RESIZE
-        create.groundPlane.transform.localScale = scaler;
+        groundPlane.transform.localScale = scaler;
 
         //SET POSITION
-        create.groundPlane.transform.position = new Vector3((float)create.gridSizeX / 2, 0, (float)create.gridSizeZ / 2);
+        groundPlane.transform.position = new Vector3((float)create.gridSizeX / 2, 0, (float)create.gridSizeZ / 2);
 
         //SET MATERIAL TILING
-        create.groundPlane.GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(
+        groundPlane.GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(
             create.gridSizeX, create.gridSizeZ);
 
         //SET BOUNDING BOX SIZE & POSITION
-        create.cameraBoundingBox.transform.position = create.groundPlane.transform.position;
-        create.cameraBoundingBox.transform.localScale = new Vector3(create.gridSizeX + 0.5f,
-            create.cameraBoundingBox.transform.localScale.y, create.gridSizeZ + 0.5f);
+        cameraBoundingBox.transform.position = groundPlane.transform.position;
+        cameraBoundingBox.transform.localScale = new Vector3(create.gridSizeX + 0.5f,
+            cameraBoundingBox.transform.localScale.y, create.gridSizeZ + 0.5f);
     }
 
     //Creates inner indestructible walls
@@ -291,6 +302,8 @@ public class LevelEditor : Editor
             return;
         }
 
+        DestroyEntireLevel();
+
         BuildBorder();
 
         CreateNonDestroyableWalls();
@@ -301,8 +314,10 @@ public class LevelEditor : Editor
     //Destroys entire level rather than individually
     void DestroyEntireLevel()
     {
-        Transform[] wallHolders = new Transform[] 
+        Transform[] wallHolders = new Transform[]
         {
+            create.playerHolder.transform,
+            create.groundHolder.transform,
             create.outerWallHolder.transform,
             create.nonDestroyableWallHolder.transform,
             create.destroyableWallHolder.transform,
@@ -432,6 +447,7 @@ public class LevelEditor : Editor
         int p = Random.Range(0, _positions.Count);
         GameObject _player = (GameObject)PrefabUtility.InstantiatePrefab(create.player);
         _player.transform.position = new Vector3(_positions[p].x, _positions[p].y + create.playerOffset.y, _positions[p].z);
+        _player.transform.parent = create.playerHolder.transform;
     }
 }
 

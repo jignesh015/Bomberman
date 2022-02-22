@@ -88,6 +88,8 @@ public class PlayerController2 : MonoBehaviour
             }
         }
 
+        if (isDead && trailEffect.isPlaying) trailEffect.Stop();
+
         //For debugging purpose
         if (enableGhostMode && !ghostMode) gameController.TogglePlayerGhostMode(true);
 
@@ -101,5 +103,15 @@ public class PlayerController2 : MonoBehaviour
         GameController.Instance.gameOver = true;
         animator.SetTrigger("IsDead");
         //animator.SetFloat("Speed", 0);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (isDead) return;
+
+        if (hit.gameObject.CompareTag("Jewel"))
+        {
+            Debug.LogFormat("Hit {0}", hit.gameObject.GetComponent<Jewel>().jewelSides);
+        }
     }
 }

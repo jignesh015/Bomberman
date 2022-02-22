@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject player, mainCamera;
+    [HideInInspector] public GameObject player, mainCamera;
     public bool gameOver;
 
     [Header("Bomb")]
@@ -43,7 +43,11 @@ public class GameController : MonoBehaviour
     public CinemachineCameraShaker cameraShaker;
     public Vector2 cameraMinClampOffset, cameraMaxClampOffset;
 
+    [Header("Script References")]
+    private LevelManager level;
     private PlayerController2 playerController;
+    public JewelSpawnerController jewelSpawner;
+    public CinemachineConfiner cinemachineConfiner;
 
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
@@ -60,12 +64,18 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        //Load level
+        yield return StartCoroutine(LoadLevel(PlayerPrefs.GetInt("Last_Selected_Level")));
+
         //Get player reference
         player = GameObject.FindGameObjectWithTag("Player");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         playerController = player.GetComponent<PlayerController2>();
+
+        //Assign Camera Bounds
+        cinemachineConfiner.m_BoundingVolume = level.cameraBoundingBox;
 
         //Assign player to virtual camera
         VirtualCamera.Follow = player.transform;
@@ -76,7 +86,6 @@ public class GameController : MonoBehaviour
 
         //Get all non-destroyable and outer wall positions
         GetNonDestroyableWallsPosition();
-
     }
 
     // Update is called once per frame
@@ -95,6 +104,24 @@ public class GameController : MonoBehaviour
 
 #endif
     }
+
+    #region "Level loading"
+    private IEnumerator LoadLevel(int _levelNo)
+    {
+        _levelNo = _levelNo == 0 ? 1 : _levelNo;
+        PlayerPrefs.SetInt("Last_Selected_Level", _levelNo);
+        string levelPrefabName = string.Format("Levels/Level {0}", _levelNo);
+        Debug.LogFormat("Load level at: {0}", levelPrefabName);
+        var request = Resources.LoadAsync<GameObject>(levelPrefabName);
+        while (!request.isDone)
+        {
+            yield return null;
+        }
+
+        var levelObj = Instantiate(request.asset) as GameObject;
+        level = levelObj.GetComponent<LevelManager>();
+    }
+    #endregion
 
     #region "Player's functions and power-ups"
     //Place bomb at player's current location

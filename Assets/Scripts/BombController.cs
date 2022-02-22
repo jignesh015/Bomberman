@@ -212,6 +212,9 @@ public class BombController : MonoBehaviour
     {
         if (_wallToDestroy == null) return;
 
+        //Check if we can spawn jewel at this location
+        gameController.jewelSpawner.CheckForJewelSpawn(_wallToDestroy.GetComponent<DestroyableWall>());
+
         GameObject _wallDestroyEffect = Instantiate(gameController.wallDestroyPrefab, gameController.explosionHolder.transform);
         _wallDestroyEffect.transform.position = _wallToDestroy.transform.position;
         Destroy(_wallToDestroy);

@@ -63,10 +63,10 @@ public class MultiSceneManager : MonoBehaviour
 
     private IEnumerator StartGameAsync(int _levelNo)
     {
-        string _levelName = string.Format("Level {0}", _levelNo);
+        PlayerPrefs.SetInt("Last_Selected_Level", _levelNo);
         ToggleLoadingScreen(true);
         yield return StartCoroutine(UnloadScene("Home"));
-        yield return StartCoroutine(LoadSceneAdditive(_levelName));
+        yield return StartCoroutine(LoadSceneAdditive("GameScene"));
         ToggleLoadingScreen(false);
     }
 

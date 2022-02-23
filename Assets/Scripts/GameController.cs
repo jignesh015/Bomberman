@@ -55,6 +55,9 @@ public class GameController : MonoBehaviour
     public Text scoreText;
     public Text jewelsCollectedText;
 
+    [Header("UI References")]
+    public GameObject gameHUD;
+
     [HideInInspector] public bool isPopupOpen;
 
     private static GameController _instance;
@@ -99,7 +102,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!playerController.isDead)
@@ -110,7 +112,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-#endif
+        gameHUD.SetActive(!isPopupOpen);
     }
 
     #region "Level loading"
@@ -231,6 +233,26 @@ public class GameController : MonoBehaviour
     {
         scoreText.text = string.Format("Score : {0}", _gameScore);
         jewelsCollectedText.text = string.Format("Jewels Collected : {0}", _jewelsCount);
+    }
+    #endregion
+
+    #region "ON UI INTERACTION"
+    public void OnHelpButtonPressed()
+    {
+        if (isPopupOpen) return;
+
+        MultiSceneManager.Instance.OpenCanvas<HelpPopupUIManager>("UI/HelpPopupUI", popup => {
+            isPopupOpen = true;
+        });
+    }
+
+    public void OnHomeButtonPressed()
+    {
+        if (isPopupOpen) return;
+
+        MultiSceneManager.Instance.OpenCanvas<ExitGameUIManager>("UI/ExitGameUI", popup => {
+            isPopupOpen = true;
+        });
     }
     #endregion
 }

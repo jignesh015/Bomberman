@@ -14,6 +14,14 @@ public class CollectJewelUIManager : UIManager
     [SerializeField] private GameObject eightSidesUIPrefab;
     [SerializeField] private GameObject nineSidesUIPrefab;
 
+    [Header("Jewel Materials")]
+    [SerializeField] private Material whiteMat;
+    [SerializeField] private Material blueMat;
+    [SerializeField] private Material redMat;
+    [SerializeField] private Material orangeMat;
+    [SerializeField] private Material greenMat;
+    [SerializeField] private Material purpleMat;
+
     [SerializeField] private Transform jewelHolder;
 
     [SerializeField] private Text colorInfoText;
@@ -56,28 +64,57 @@ public class CollectJewelUIManager : UIManager
         OnDiscardedCallback = _onDiscardedCallback;
 
         //Instantiate jewel ui prefab
+        GameObject _spawnedJewel;
         switch (_jewel.jewelSides)
         {
             case 4:
-                Instantiate(fourSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(fourSidesUIPrefab, jewelHolder);
                 break;
             case 5:
-                Instantiate(fiveSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(fiveSidesUIPrefab, jewelHolder);
                 break;
             case 6:
-                Instantiate(sixSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(sixSidesUIPrefab, jewelHolder);
                 break;
             case 7:
-                Instantiate(sevenSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(sevenSidesUIPrefab, jewelHolder);
                 break;
             case 8:
-                Instantiate(eightSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(eightSidesUIPrefab, jewelHolder);
                 break;
             case 9:
-                Instantiate(nineSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(nineSidesUIPrefab, jewelHolder);
                 break;
             default:
-                Instantiate(fourSidesUIPrefab, jewelHolder);
+                _spawnedJewel = Instantiate(fourSidesUIPrefab, jewelHolder);
+                break;
+        }
+
+        //Assign proper material
+        MeshRenderer _renderer = _spawnedJewel.GetComponentInChildren<MeshRenderer>();
+        if (_renderer == null) return;
+        switch (_jewel.jewelColor)
+        {
+            case JewelColor.White:
+                _renderer.material = whiteMat;
+                break;
+            case JewelColor.Blue:
+                _renderer.material = blueMat;
+                break;
+            case JewelColor.Red:
+                _renderer.material = redMat;
+                break;
+            case JewelColor.Orange:
+                _renderer.material = orangeMat;
+                break;
+            case JewelColor.Green:
+                _renderer.material = greenMat;
+                break;
+            case JewelColor.Purple:
+                _renderer.material = purpleMat;
+                break;
+            default:
+                _renderer.material = whiteMat;
                 break;
         }
 
@@ -86,9 +123,7 @@ public class CollectJewelUIManager : UIManager
         sidesInfoText.text = "Sides: " + _jewel.jewelSides.ToString();
 
         //Assign Camera
-        Canvas _canvas = GetComponent<Canvas>();
-        _canvas.worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        _canvas.planeDistance = 5;
+        AssignUICamera();
     }
 
     public void OnCollectPressed()

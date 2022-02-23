@@ -14,6 +14,14 @@ public class UIManager : MonoBehaviour
         onOpen.Invoke();
     }
 
+    public void AssignUICamera()
+    {
+        //Assign Camera
+        Canvas _canvas = GetComponent<Canvas>();
+        _canvas.worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _canvas.planeDistance = 5;
+    }
+
     /// <summary>
     /// Closes the popup.
     /// </summary>

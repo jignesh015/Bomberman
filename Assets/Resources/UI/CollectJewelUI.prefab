@@ -323,6 +323,12 @@ MonoBehaviour:
     type: 3}
   nineSidesUIPrefab: {fileID: 6976971412991752928, guid: e313e50ad32adad42b072a2efd522717,
     type: 3}
+  whiteMat: {fileID: 2100000, guid: 924ecafc12133ae4eb0a26a15767cecd, type: 2}
+  blueMat: {fileID: 2100000, guid: bf952638d05722647a345bb09523e95e, type: 2}
+  redMat: {fileID: 2100000, guid: c149ecd4769718c4ba8ec43a4fcbaa2c, type: 2}
+  orangeMat: {fileID: 2100000, guid: 155996dea6a6b3244b7ad855c1a23b2e, type: 2}
+  greenMat: {fileID: 2100000, guid: 07da381f11ef9824098044d26e102a7f, type: 2}
+  purpleMat: {fileID: 2100000, guid: e9ded42665f285e4c875e4098ae353b6, type: 2}
   jewelHolder: {fileID: 95466778744288427}
   colorInfoText: {fileID: 95466779880388174}
   sidesInfoText: {fileID: 95466780291200861}

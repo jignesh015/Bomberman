@@ -53,6 +53,7 @@ public class MultiSceneManager : MonoBehaviour
     {
         ToggleLoadingScreen(true);
         yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(UnloadAllSceneAsync());
         yield return StartCoroutine(LoadSceneAdditive("Home"));
         ToggleLoadingScreen(false);
     }
@@ -66,7 +67,7 @@ public class MultiSceneManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Last_Selected_Level", _levelNo);
         ToggleLoadingScreen(true);
-        yield return StartCoroutine(UnloadScene("Home"));
+        yield return StartCoroutine(UnloadAllSceneAsync());
         yield return StartCoroutine(LoadSceneAdditive("GameScene"));
         ToggleLoadingScreen(false);
     }
@@ -126,6 +127,29 @@ public class MultiSceneManager : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    private IEnumerator UnloadAllSceneAsync(List<string> _skipScenes = null)
+    {
+        //Get all loaded scenes
+        int countLoaded = SceneManager.sceneCount;
+        Scene[] loadedScenes = new Scene[countLoaded];
+        List<string> _scenesToSkip = new List<string> { "Index" };
+        if (_skipScenes != null) _scenesToSkip.AddRange(_skipScenes);
+
+        for (int i = 0; i < countLoaded; i++)
+        {
+            loadedScenes[i] = SceneManager.GetSceneAt(i);
+        }
+        foreach (Scene _scene in loadedScenes)
+        {
+            if (_scene != null && _scene.isLoaded && !_scenesToSkip.Contains(_scene.name))
+            {
+                Debug.LogFormat("<color=green>Unloading Scene: {0}</color>", _scene.name);
+                yield return StartCoroutine(UnloadScene(_scene.name));
+            }
+        }
+        yield return null;
     }
     #endregion
 

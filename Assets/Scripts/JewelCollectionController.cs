@@ -13,14 +13,14 @@ public class JewelCollectionController : MonoBehaviour
     public int emeraldScore = 300;
     public int sapphireScore = 500;
 
+    public List<Jewel> jewelsCollectedList;
 
-    public List<Jewel> jewelsList;
+    private int jewelsFound;
 
     // Start is called before the first frame update
     void Start()
     {
-        jewelsList = new List<Jewel>();
-        GameController.Instance.DisplayScore(0, 0);
+        jewelsCollectedList = new List<Jewel>();
     }
 
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class JewelCollectionController : MonoBehaviour
 
     public void OnCollisionWithJewel(Jewel _jewel)
     {
+        jewelsFound++;
         _jewel.gameObject.SetActive(false);
         MultiSceneManager.Instance.OpenCanvas<CollectJewelUIManager>("UI/CollectJewelUI", popup => {
             GameController.Instance.isPopupOpen = true;
@@ -40,18 +41,23 @@ public class JewelCollectionController : MonoBehaviour
 
     public void OnJewelCollected(Jewel _jewel)
     {
-        jewelsList.Add(_jewel);
+        jewelsCollectedList.Add(_jewel);
         CalculateScore(_jewel);
 
-        GameController.Instance.DisplayScore(jewelScore, jewelsList.Count);
+        GameController.Instance.DisplayScore(jewelScore, jewelsFound);
+        GameController.Instance.CheckForLevelComplete(jewelScore, jewelsFound, jewelsCollectedList);
+
         GameController.Instance.isPopupOpen = false;
     }
 
     public void OnJewelDiscarded(Jewel _jewel)
     {
         GameController.Instance.isPopupOpen = false;
-        if (_jewel == null || _jewel.gameObject == null) return;
-        Destroy(_jewel.gameObject);
+        GameController.Instance.DisplayScore(jewelScore, jewelsFound);
+        GameController.Instance.CheckForLevelComplete(jewelScore, jewelsFound, jewelsCollectedList);
+
+        //if (_jewel == null || _jewel.gameObject == null) return;
+        //Destroy(_jewel.gameObject);
     }
 
     private void CalculateScore(Jewel _jewel)

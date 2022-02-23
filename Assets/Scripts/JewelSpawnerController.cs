@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,15 +34,18 @@ public class JewelSpawnerController : MonoBehaviour
         
     }
 
-    public void CheckForJewelSpawn(DestroyableWall _destroyedWall)
+    public void CheckForJewelSpawn(Vector2 _destroyedWallPosition)
     {
-        if (_destroyedWall.spawnJewelHere)
+        LevelManager _level = GameController.Instance.level;
+        JewelClass _jewelToSpawn = _level.jewelsToSpawn.Find(j => j.spawnLocation.x.Equals(_destroyedWallPosition.x)
+            && j.spawnLocation.y.Equals(_destroyedWallPosition.y));
+
+        if (_jewelToSpawn != null)
         {
-            JewelClass _jewelToSpawn = _destroyedWall.jewelToSpawn;
             //Instantiate Jewel
             Jewel _spawnedJewel = InstantiateJewel(_jewelToSpawn.jewelSides);
             //Assign position
-            _spawnedJewel.transform.position = _destroyedWall.transform.position;
+            _spawnedJewel.transform.position = new Vector3(_jewelToSpawn.spawnLocation.x, 0.5f, _jewelToSpawn.spawnLocation.y);
             //Assign parent
             _spawnedJewel.transform.parent = transform;
             //Assign material
@@ -130,4 +134,5 @@ public class JewelClass
     public bool isReal;
     public int jewelSides = 4;
     public JewelColor jewelColor;
+    public Vector2 spawnLocation;
 }

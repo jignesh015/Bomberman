@@ -6,11 +6,13 @@ public class LevelManager : MonoBehaviour
 {
     public int levelNumber;
 
+    public int timeLimit = 90; //in seconds
     public int numOfRealJewels;
+
+    public List<JewelClass> jewelsToSpawn;
+
+    [Header("Score Goals")]
     public int totalScore;
-
-
-    [Header("Star Goals")]
     public int star1Score;
     public int star2Score;
     public int star3Score;

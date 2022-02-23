@@ -39,7 +39,8 @@ public class CollectJewelUIManager : UIManager
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Assign Camera
+        AssignUICamera();
     }
 
     // Update is called once per frame
@@ -121,9 +122,6 @@ public class CollectJewelUIManager : UIManager
         //Assign Info
         colorInfoText.text = "Color: " + _jewel.jewelColor.ToString();
         sidesInfoText.text = "Sides: " + _jewel.jewelSides.ToString();
-
-        //Assign Camera
-        AssignUICamera();
     }
 
     public void OnCollectPressed()

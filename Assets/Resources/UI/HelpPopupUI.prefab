@@ -73,7 +73,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 544.19147}
+  m_SizeDelta: {x: 600, y: 639.36237}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5359641864326105592
 CanvasRenderer:
@@ -117,7 +117,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\nObjective:\n\n- Find jewels by mining\n- Collect real jewels and \n  
     discard the fake ones\n- Earn points for real \n   jewels collected\n- Lose -100
-    points for fake\n   jewels collected"
+    points for fake\n   jewels collected\n- Find all jewels to complete\n   a level"
 --- !u!1 &5359641864409924813
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5359641864409924814}
   - component: {fileID: 5359641864409924815}
   m_Layer: 5
-  m_Name: Center Panel (1)
+  m_Name: Controls Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5359641866157930311}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.25807124
+  m_Size: 0.2455991
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -54,6 +54,13 @@ public class PlayerController2 : MonoBehaviour
             return;
         }
 
+        if (GameController.Instance.gameOverController.isGameOver || GameController.Instance.isLevelComplete)
+        {
+            trailEffect.Stop();
+            animator.SetFloat("Speed", 0);
+            return;
+        }
+
         if (!isDead)
         {
             direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
@@ -111,6 +118,7 @@ public class PlayerController2 : MonoBehaviour
         GameController.Instance.gameOver = true;
         animator.SetTrigger("IsDead");
         //animator.SetFloat("Speed", 0);
+        GameController.Instance.gameOverController.OnGameOver(GameOverReason.Dead,2f);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

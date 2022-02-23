@@ -8,8 +8,9 @@ using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
-    [HideInInspector] public GameObject player, mainCamera;
     public bool gameOver;
+    public Camera mainCamera;
+    [HideInInspector] public GameObject player;
 
     [Header("Bomb")]
     public GameObject bombPrefab;
@@ -45,20 +46,29 @@ public class GameController : MonoBehaviour
     public Vector2 cameraMinClampOffset, cameraMaxClampOffset;
 
     [Header("Script References")]
-    private LevelManager level;
-    private PlayerController2 playerController;
     public JewelSpawnerController jewelSpawner;
     public JewelCollectionController jewelCollectionController;
     public CinemachineConfiner cinemachineConfiner;
-
-    [Header("Score UI")]
-    public Text scoreText;
-    public Text jewelsCollectedText;
+    public GameOverController gameOverController;
+    [HideInInspector] public PlayerController2 playerController;
+    [HideInInspector] public LevelManager level;
 
     [Header("UI References")]
     public GameObject gameHUD;
+    public Text scoreText;
+    public Text jewelsCollectedText;
+    public Text timerText;
 
     [HideInInspector] public bool isPopupOpen;
+    [HideInInspector] public bool isLevelComplete;
+
+    //Timer
+    private float timeRemaining;
+    private bool timerIsRunning = false;
+    private bool timerAnimationActive = false;
+
+    private int ogCamCullingMask;
+
 
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
@@ -77,12 +87,17 @@ public class GameController : MonoBehaviour
 
     IEnumerator Start()
     {
+        //Assign culling mask
+        ogCamCullingMask = mainCamera.cullingMask;
+
         //Load level
         yield return StartCoroutine(LoadLevel(PlayerPrefs.GetInt("Last_Selected_Level")));
 
+        //Reset Score
+        DisplayScore(0,0);
+
         //Get player reference
         player = GameObject.FindGameObjectWithTag("Player");
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         playerController = player.GetComponent<PlayerController2>();
 
         //Assign Camera Bounds
@@ -102,17 +117,48 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (level == null)
+            return;
+
+        if (gameOverController.isGameOver || isLevelComplete)
+        {
+            gameHUD.SetActive(false);
+            return;
+        }
+
+        gameHUD.SetActive(!isPopupOpen);
+
+        mainCamera.cullingMask = isPopupOpen ? (ogCamCullingMask & ~(1 << 13)) : ogCamCullingMask;
+
+        if (isPopupOpen) return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!playerController.isDead)
                 PlaceBomb();
-            else
-            {
-                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnHomeButtonPressed();
         }
 
-        gameHUD.SetActive(!isPopupOpen);
+        //Timer
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTimer(timeRemaining);
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                timeRemaining = 0;
+                timerIsRunning = false;
+                DisplayTimer(timeRemaining);
+                gameOverController.OnGameOver(GameOverReason.Time, 0.2f);
+            }
+        }
     }
 
     #region "Level loading"
@@ -129,7 +175,10 @@ public class GameController : MonoBehaviour
         }
 
         var levelObj = Instantiate(request.asset) as GameObject;
+        levelObj.transform.parent = transform;
         level = levelObj.GetComponent<LevelManager>();
+        timeRemaining = level.timeLimit;
+        timerIsRunning = true;
     }
     #endregion
 
@@ -165,6 +214,25 @@ public class GameController : MonoBehaviour
     public void ShakeCamera()
     {
         cameraShaker.CinemachineShake();
+    }
+
+    public void CheckForLevelComplete(int _gameScore,int _jewelsFoundCount, List<Jewel> _jewelsCollected)
+    {
+        if (_jewelsFoundCount == level.jewelsToSpawn.Count)
+        {
+            //Level Complete
+            isLevelComplete = true;
+            StartCoroutine(CheckForLevelCompleteAsync(_gameScore, _jewelsCollected));
+        }
+    }
+
+    private IEnumerator CheckForLevelCompleteAsync(int _gameScore, List<Jewel> _jewelsCollected)
+    {
+        yield return new WaitForSeconds(1f);
+
+        MultiSceneManager.Instance.OpenCanvas<LevelCompleteUIManager>("UI/LevelCompleteUI", popup => {
+            popup.OnPopupOpen(_gameScore, _jewelsCollected, level);
+        });
     }
     #endregion
 
@@ -228,15 +296,27 @@ public class GameController : MonoBehaviour
 
     #endregion
 
-    #region "Score Display Management"
-    public void DisplayScore(int _gameScore, int _jewelsCount)
+    #region "HUD Display Management"
+    public void DisplayScore(int _gameScore, int _jewelsFoundCount)
     {
         scoreText.text = string.Format("Score : {0}", _gameScore);
-        jewelsCollectedText.text = string.Format("Jewels Collected : {0}", _jewelsCount);
+        jewelsCollectedText.text = string.Format("Jewels Found : {0}/{1}", _jewelsFoundCount, level.jewelsToSpawn.Count);
+    }
+
+    public void DisplayTimer(float _timeRemaining)
+    {
+        if (_timeRemaining < 11 && !timerAnimationActive)
+        {
+            timerAnimationActive = true;
+            timerText.GetComponent<Animator>().SetTrigger("Play");
+        }
+        float minutes = Mathf.FloorToInt(_timeRemaining / 60);
+        float seconds = Mathf.FloorToInt(_timeRemaining % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
     #endregion
 
-    #region "ON UI INTERACTION"
+    #region "On UI Interaction"
     public void OnHelpButtonPressed()
     {
         if (isPopupOpen) return;

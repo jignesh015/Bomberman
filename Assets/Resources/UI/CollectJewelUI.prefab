@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 95466779480423436}
   - component: {fileID: 95466779480423435}
   - component: {fileID: 95466779480423439}
+  - component: {fileID: 7389837545027456574}
   m_Layer: 5
   m_Name: CollectJewelUI
   m_TagString: Untagged
@@ -310,7 +311,18 @@ MonoBehaviour:
       m_Calls: []
   onClose:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7389837545027456574}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Close
+          m_BoolArgument: 0
+        m_CallState: 2
   fourSidesUIPrefab: {fileID: 7411501751416246434, guid: 7390b137af6bc324c81bcc49ef6f4c13,
     type: 3}
   fiveSidesUIPrefab: {fileID: 1485984331695769374, guid: eaac42898c7d0d049b129a87b90af641,
@@ -334,6 +346,25 @@ MonoBehaviour:
   sidesInfoText: {fileID: 95466780291200861}
   collectBtn: {fileID: 95466780140964212}
   discardBtn: {fileID: 95466780327148709}
+--- !u!95 &7389837545027456574
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95466779480423434}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b5f4d97dd97b924c9b420fa9684e7ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &95466779852262214
 GameObject:
   m_ObjectHideFlags: 0

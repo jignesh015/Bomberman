@@ -14,8 +14,8 @@ public class HomeSceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Show Continue button if completed few levels before
-        buttons[0].SetActive(PlayerPrefs.HasKey("Level_Completed"));
+        //Show Continue button if completed a level before and hasn't completed the game
+        buttons[0].SetActive(PlayerPrefs.HasKey("Level_Completed") && !PlayerPrefs.HasKey("Game_Completed"));
     }
 
     // Update is called once per frame
@@ -33,6 +33,8 @@ public class HomeSceneController : MonoBehaviour
 
     public void OnNewGamePressed()
     {
+        PlayerPrefs.DeleteKey("Game_Completed");
+        PlayerPrefs.DeleteKey("Level_Completed");
         MultiSceneManager.Instance.StartGame(1);
     }
 

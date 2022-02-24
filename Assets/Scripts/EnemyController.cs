@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         enemy = GetComponent<CharacterController>();
         enemyRigidbody = GetComponent<Rigidbody>();
-        trail = transform.GetChild(1).gameObject;
+        trail = transform.Find("Trail")?.gameObject;
         if (trail != null) trail.SetActive(false);
 
         enemyRigidbody.isKinematic = true;

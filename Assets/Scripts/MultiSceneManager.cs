@@ -9,6 +9,9 @@ public class MultiSceneManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject loadingScreen;
 
+    [Header("Global Variables")]
+    public int numOfLevels;
+
     private static MultiSceneManager _instance;
 
     public static MultiSceneManager Instance { get { return _instance; } }
@@ -145,7 +148,6 @@ public class MultiSceneManager : MonoBehaviour
         {
             if (_scene != null && _scene.isLoaded && !_scenesToSkip.Contains(_scene.name))
             {
-                Debug.LogFormat("<color=green>Unloading Scene: {0}</color>", _scene.name);
                 yield return StartCoroutine(UnloadScene(_scene.name));
             }
         }

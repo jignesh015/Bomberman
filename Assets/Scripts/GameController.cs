@@ -167,7 +167,6 @@ public class GameController : MonoBehaviour
         _levelNo = _levelNo == 0 ? 1 : _levelNo;
         PlayerPrefs.SetInt("Last_Selected_Level", _levelNo);
         string levelPrefabName = string.Format("Levels/Level {0}", _levelNo);
-        Debug.LogFormat("Load level at: {0}", levelPrefabName);
         var request = Resources.LoadAsync<GameObject>(levelPrefabName);
         while (!request.isDone)
         {
@@ -222,17 +221,38 @@ public class GameController : MonoBehaviour
         {
             //Level Complete
             isLevelComplete = true;
-            StartCoroutine(CheckForLevelCompleteAsync(_gameScore, _jewelsCollected));
+            PlayerPrefs.SetInt("Level_Completed", level.levelNumber);
+
+            //Check for game complete
+            if (level.levelNumber == MultiSceneManager.Instance.numOfLevels)
+            {
+                PlayerPrefs.SetInt("Game_Completed", level.levelNumber);
+                //Open Game Complete UI
+                StartCoroutine(OpenGameCompleteUI());
+            }
+            else
+            { 
+                //Open Level Complete UI
+                StartCoroutine(OpenLevelCompleteUI(_gameScore, _jewelsCollected));
+            }
+
         }
     }
 
-    private IEnumerator CheckForLevelCompleteAsync(int _gameScore, List<Jewel> _jewelsCollected)
+    private IEnumerator OpenLevelCompleteUI(int _gameScore, List<Jewel> _jewelsCollected)
     {
         yield return new WaitForSeconds(1f);
 
         MultiSceneManager.Instance.OpenCanvas<LevelCompleteUIManager>("UI/LevelCompleteUI", popup => {
             popup.OnPopupOpen(_gameScore, _jewelsCollected, level);
         });
+    }
+
+    private IEnumerator OpenGameCompleteUI()
+    {
+        yield return new WaitForSeconds(1f);
+
+        MultiSceneManager.Instance.OpenCanvas<LevelCompleteUIManager>("UI/GameCompleteUI");
     }
     #endregion
 

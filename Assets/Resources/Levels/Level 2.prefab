@@ -180,7 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumber: 2
-  timeLimit: 120
+  cameraSize: 6
+  timeLimit: 90
   numOfRealJewels: 3
   jewelsToSpawn:
   - isReal: 1

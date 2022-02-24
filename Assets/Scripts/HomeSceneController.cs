@@ -27,8 +27,7 @@ public class HomeSceneController : MonoBehaviour
     public void OnContinueGamePressed()
     {
         int _levelNo = PlayerPrefs.GetInt("Level_Completed");
-        if (_levelNo == 0) _levelNo = 1;
-        MultiSceneManager.Instance.StartGame(_levelNo);
+        MultiSceneManager.Instance.StartGame(_levelNo + 1);
     }
 
     public void OnNewGamePressed()

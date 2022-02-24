@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public int levelNumber;
+    public float cameraSize;
 
     public int timeLimit = 90; //in seconds
     public int numOfRealJewels;

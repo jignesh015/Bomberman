@@ -92,6 +92,7 @@ public class GameController : MonoBehaviour
 
         //Load level
         yield return StartCoroutine(LoadLevel(PlayerPrefs.GetInt("Last_Selected_Level")));
+        yield return null;
 
         //Reset Score
         DisplayScore(0,0);
@@ -100,7 +101,8 @@ public class GameController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController2>();
 
-        //Assign Camera Bounds
+        //Assign Camera Bounds and ortographic size
+        mainCamera.orthographicSize = level.cameraSize;
         cinemachineConfiner.m_BoundingVolume = level.cameraBoundingBox;
 
         //Assign player to virtual camera
@@ -112,6 +114,10 @@ public class GameController : MonoBehaviour
 
         //Get all non-destroyable and outer wall positions
         GetNonDestroyableWallsPosition();
+
+        //Reset Timer
+        timeRemaining = level.timeLimit;
+        timerIsRunning = true;
     }
 
     // Update is called once per frame
@@ -176,8 +182,6 @@ public class GameController : MonoBehaviour
         var levelObj = Instantiate(request.asset) as GameObject;
         levelObj.transform.parent = transform;
         level = levelObj.GetComponent<LevelManager>();
-        timeRemaining = level.timeLimit;
-        timerIsRunning = true;
     }
     #endregion
 

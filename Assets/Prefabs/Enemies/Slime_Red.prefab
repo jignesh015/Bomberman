@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 2649498696474455782}
   - component: {fileID: 2649498696474455781}
   m_Layer: 14
-  m_Name: Slime_1
+  m_Name: Slime_Red
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   enemyWalkingDirection: []
   enemyType: 0
   walkDirection: {x: 0, y: 0, z: 0}
-  speed: 0.5
+  speed: 0.75
   turnSmoothTime: 0.1
   lives: 1
   force: 5

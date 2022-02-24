@@ -2519,6 +2519,7 @@ MonoBehaviour:
   - OuterWall
   - Bomb
   - Enemy
+  - Jewel
   shakeDuration: 0.3
   shakeAmplitude: 2
   shakeFrequency: 1

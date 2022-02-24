@@ -115,7 +115,6 @@ public class PlayerController2 : MonoBehaviour
         if (isDead || indestructible || godMode) return;
 
         isDead = true;
-        GameController.Instance.gameOver = true;
         animator.SetTrigger("IsDead");
         //animator.SetFloat("Speed", 0);
         GameController.Instance.gameOverController.OnGameOver(GameOverReason.Dead,2f);

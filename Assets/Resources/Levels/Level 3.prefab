@@ -52,6 +52,8 @@ MonoBehaviour:
   levelNumber: 3
   cameraSize: 7
   timeLimit: 90
+  explosionRange: 2
+  maxBombCount: 2
   numOfRealJewels: 4
   jewelsToSpawn:
   - isReal: 1
@@ -78,10 +80,6 @@ MonoBehaviour:
     jewelSides: 4
     jewelColor: 2
     spawnLocation: {x: 5.5, y: 7.5}
-  totalScore: 0
-  star1Score: 0
-  star2Score: 0
-  star3Score: 0
   cameraBoundingBox: {fileID: 1797185851321891868}
 --- !u!1 &7214392569609545206
 GameObject:

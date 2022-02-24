@@ -102,7 +102,8 @@ public class BombController : MonoBehaviour
         //Do trail explosion
         StartCoroutine(DoTrailExplosion(_bombOrigin));
 
-        //Destroy walls near explosion
+        //Update live bomb count
+        GameController.Instance.UpdateLiveBombCount(1);
     }
 
     public void CancelPreviousDetonationAndDoExplosion()

@@ -68,7 +68,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.gameOver) return;
+        if (gameController.gameOverController.isGameOver 
+            || gameController.isLevelComplete 
+            || gameController.isPopupOpen) 
+            return;
 
         if (isDead && dissolveValue < 2f)
         {

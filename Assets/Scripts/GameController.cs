@@ -8,8 +8,10 @@ using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
-    public bool gameOver;
+    [Header("Camera")]
     public Camera mainCamera;
+    public CinemachineVirtualCamera _cinemachineCamera;
+
     [HideInInspector] public GameObject player;
 
     [Header("Bomb")]
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour
     public List<GameObject> activeBombs;
     [HideInInspector]
     public Dictionary<string, GameObject> activeBombsPositionDict;
+    public int maxBombCount;
 
     [Header("Explosion")]
     public GameObject explosionPrefab;
@@ -55,9 +58,12 @@ public class GameController : MonoBehaviour
 
     [Header("UI References")]
     public GameObject gameHUD;
+    public Text levelText;
     public Text scoreText;
     public Text jewelsCollectedText;
+    public Text explosionRangeText;
     public Text timerText;
+    public Transform bombCountHolder;
 
     [HideInInspector] public bool isPopupOpen;
     [HideInInspector] public bool isLevelComplete;
@@ -68,7 +74,7 @@ public class GameController : MonoBehaviour
     private bool timerAnimationActive = false;
 
     private int ogCamCullingMask;
-
+    private int liveBombCount;
 
     private static GameController _instance;
     public static GameController Instance { get { return _instance; } }
@@ -94,8 +100,12 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(LoadLevel(PlayerPrefs.GetInt("Last_Selected_Level")));
         yield return null;
 
-        //Reset Score
-        DisplayScore(0,0);
+        //Set explosion range
+        SetExplosionRange(level.explosionRange);
+
+        //Set max bomb count
+        maxBombCount = level.maxBombCount;
+        liveBombCount = 0;
 
         //Get player reference
         player = GameObject.FindGameObjectWithTag("Player");
@@ -103,6 +113,7 @@ public class GameController : MonoBehaviour
 
         //Assign Camera Bounds and ortographic size
         mainCamera.orthographicSize = level.cameraSize;
+        _cinemachineCamera.m_Lens.OrthographicSize = level.cameraSize;
         cinemachineConfiner.m_BoundingVolume = level.cameraBoundingBox;
 
         //Assign player to virtual camera
@@ -114,6 +125,12 @@ public class GameController : MonoBehaviour
 
         //Get all non-destroyable and outer wall positions
         GetNonDestroyableWallsPosition();
+
+        //Reset HUD
+        DisplayScore(0, 0);
+        DisplayLevelNumber();
+        DisplayBombCount(liveBombCount);
+        DisplayExplosionRange(explosionRange);
 
         //Reset Timer
         timeRemaining = level.timeLimit;
@@ -189,6 +206,9 @@ public class GameController : MonoBehaviour
     //Place bomb at player's current location
     public void PlaceBomb()
     {
+        //Place bomb only if live bombs are less than the max bomb count 
+        if (liveBombCount >= maxBombCount) return;
+
         Vector3 playerPos = player.transform.position;
         Vector3 _posToPlaceBomb = new Vector3(Mathf.Floor(playerPos.x) + 0.5f, 0, Mathf.Floor(playerPos.z) + 0.5f);
         if (GetActiveBombsPosition().ContainsKey("X" + _posToPlaceBomb.x.ToString() + "Z" + _posToPlaceBomb.z.ToString())
@@ -202,12 +222,34 @@ public class GameController : MonoBehaviour
         GameObject placedBomb = Instantiate(bombPrefab, bombHolder.transform);
         placedBomb.transform.position = new Vector3(_posToPlaceBomb.x, placedBomb.transform.position.y, _posToPlaceBomb.z);
         activeBombs.Add(placedBomb);
+        UpdateLiveBombCount(0);
     }
 
     public void SetExplosionRange(int _explosionRange) => explosionRange = _explosionRange <= 
         maxExplosionRange ? _explosionRange : maxExplosionRange;
 
-    public void TogglePlayerGhostMode(bool _ghostMode)
+    /// <summary>
+    /// Update live bomb count based on given status
+    /// | 0 = Bomb Placed | 1 = Bomb exploded |
+    /// </summary>
+    /// <param name="_status"></param>
+    public void UpdateLiveBombCount(int _status)
+    {
+        switch (_status)
+        {
+            case 0:
+                //Bomb placed
+                liveBombCount++;
+                break;
+            case 1:
+                //Bomb exploded
+                liveBombCount--;
+                break;
+        }
+        DisplayBombCount(liveBombCount);
+    }
+
+     public void TogglePlayerGhostMode(bool _ghostMode)
     {
         playerController.ghostMode = _ghostMode;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("DestroyableWall"), _ghostMode);
@@ -321,6 +363,11 @@ public class GameController : MonoBehaviour
     #endregion
 
     #region "HUD Display Management"
+    public void DisplayLevelNumber()
+    {
+        levelText.text = string.Format("Level : {0}", level.levelNumber);
+    }
+
     public void DisplayScore(int _gameScore, int _jewelsFoundCount)
     {
         scoreText.text = string.Format("Score : {0}", _gameScore);
@@ -338,6 +385,21 @@ public class GameController : MonoBehaviour
         float seconds = Mathf.FloorToInt(_timeRemaining % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    public void DisplayExplosionRange(int _range)
+    {
+        explosionRangeText.text = string.Format("Range : x{0}", _range);
+    }
+
+    public void DisplayBombCount(int _liveBombCount)
+    {
+        int _bombsAvailable = maxBombCount - _liveBombCount;
+        for (int i = 0; i < bombCountHolder.childCount; i++)
+        {
+            bombCountHolder.GetChild(i).gameObject.SetActive(i < _bombsAvailable);
+        }
+    }
+
     #endregion
 
     #region "On UI Interaction"

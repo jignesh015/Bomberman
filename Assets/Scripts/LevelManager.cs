@@ -8,15 +8,11 @@ public class LevelManager : MonoBehaviour
     public float cameraSize;
 
     public int timeLimit = 90; //in seconds
+    public int explosionRange = 1;
+    public int maxBombCount = 2;
+
     public int numOfRealJewels;
-
     public List<JewelClass> jewelsToSpawn;
-
-    [Header("Score Goals")]
-    public int totalScore;
-    public int star1Score;
-    public int star2Score;
-    public int star3Score;
 
     [Header("References")]
     public Collider cameraBoundingBox;

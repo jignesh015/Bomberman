@@ -2852,7 +2852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e964b2655245f1b43808da4fb61ed35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOver: 0
   mainCamera: {fileID: 687666549}
   _cinemachineCamera: {fileID: 344595926}
   player: {fileID: 0}
@@ -2875,7 +2874,7 @@ MonoBehaviour:
     type: 3}
   explosionHolder: {fileID: 730403299}
   explosionRange: 1
-  maxExplosionRange: 2
+  maxExplosionRange: 10
   explosionDuration: 0.75
   lastBombOrigin: {x: 0, y: 0, z: 0}
   timeToDissolveEnemy: 0.75

@@ -37,6 +37,11 @@ public class GameController : MonoBehaviour
     public Dictionary<string, GameObject> nonDestroyableWallsPositionDict;
     public Dictionary<string, GameObject> outerWallsPositionDict;
 
+    [Header("Walls Transparent Mat")]
+    public Material destroyableWallTransparentMat;
+    public Material nonDestroyableWallTransparentMat;
+    public Material outerWallTransparentMat;
+
     [Header("Enemies")]
     public float timeToDissolveEnemy;
     public List<string> tagsEnemyShouldCollideWith;

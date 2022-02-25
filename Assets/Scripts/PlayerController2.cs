@@ -117,10 +117,30 @@ public class PlayerController2 : MonoBehaviour
         if (isDead || indestructible || godMode) return;
 
         isDead = true;
+
+        SwitchWallsMatToTransparent();
         animator.SetTrigger("IsDead");
         //animator.SetFloat("Speed", 0);
         GameController.Instance.gameOverController.OnGameOver(GameOverReason.Dead,2f);
     }
+
+    private void SwitchWallsMatToTransparent()
+    {
+        Dictionary<string, GameObject> _destroyableWalls = gameController.GetDestroyableWallsPosition();
+        foreach (GameObject _wall in _destroyableWalls.Values)
+        {
+            _wall.GetComponent<Renderer>().material = gameController.destroyableWallTransparentMat;
+        }
+        foreach (GameObject _wall in gameController.nonDestroyableWallsPositionDict.Values)
+        {
+            _wall.GetComponent<Renderer>().material = gameController.nonDestroyableWallTransparentMat;
+        }
+        foreach (GameObject _wall in gameController.outerWallsPositionDict.Values)
+        {
+            _wall.GetComponent<Renderer>().material = gameController.outerWallTransparentMat;
+        }
+    }
+
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {

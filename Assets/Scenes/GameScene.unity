@@ -2951,6 +2951,12 @@ MonoBehaviour:
   maxExplosionRange: 10
   explosionDuration: 0.75
   lastBombOrigin: {x: 0, y: 0, z: 0}
+  destroyableWallTransparentMat: {fileID: 2100000, guid: 838d43b4c4997d845adb1b20a2b24661,
+    type: 2}
+  nonDestroyableWallTransparentMat: {fileID: 2100000, guid: 6af7e8d615970be4b9e7e5005883f0d3,
+    type: 2}
+  outerWallTransparentMat: {fileID: 2100000, guid: bbdc3ed98c68bba45ba5807ce4771a64,
+    type: 2}
   timeToDissolveEnemy: 0.75
   tagsEnemyShouldCollideWith:
   - Destroyable

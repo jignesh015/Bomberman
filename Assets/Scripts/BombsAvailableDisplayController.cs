@@ -12,10 +12,12 @@ public class BombsAvailableDisplayController : MonoBehaviour
     [SerializeField] private Sprite bombAvailableSprite;
     [SerializeField] private Sprite bombUnAvailableSprite;
 
+    private Animator alertAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        alertAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,5 +35,10 @@ public class BombsAvailableDisplayController : MonoBehaviour
             bombImages[i].gameObject.SetActive(i < _maxBombCount);
             bombImages[i].sprite = (i < _bombsAvailable) ? bombAvailableSprite : bombUnAvailableSprite;
         }
+    }
+
+    public void AlertUser()
+    {
+        alertAnimator.SetTrigger("Play");
     }
 }

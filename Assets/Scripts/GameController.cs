@@ -218,6 +218,10 @@ public class GameController : MonoBehaviour
         {
             //Play error SFX
             _sfx.PlayAudio(playerController.playerAudioSource, _sfx.bombError);
+
+            //Alert user
+            bombsAvailableDisplayController.AlertUser();
+
             return;
         }
 

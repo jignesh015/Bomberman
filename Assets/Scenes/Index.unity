@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 84ea18bee2357194b855c9cd4a29f2da, type: 3}
-  playerWalk: {fileID: 8300000, guid: 92b6133fcbb33744897f40152bfe2a32, type: 3}
+  playerWalk: {fileID: 8300000, guid: 7aa970ca90436374f98988ad38302216, type: 3}
   bombExplosion: {fileID: 8300000, guid: f5fe7ad8be8400e4685a24c9a92685b3, type: 3}
   bombPush: {fileID: 8300000, guid: 6012916a7304c344d8ed5806d38b97d0, type: 3}
   enemyDeath: {fileID: 8300000, guid: 9f091b51180e5d4438815314cbe6a51f, type: 3}

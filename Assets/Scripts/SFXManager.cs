@@ -85,7 +85,7 @@ public class SFXManager : MonoBehaviour
 
         if (!_playerAudioSource.isPlaying)
         {
-            _playerAudioSource.pitch = Random.Range(2f, 2.2f);
+            //_playerAudioSource.pitch = Random.Range(2f, 2.2f);
             PlayAudio(_playerAudioSource, playerWalk);
         }
     }

@@ -33,6 +33,8 @@ public class JewelCollectionController : MonoBehaviour
     {
         jewelsFound++;
         _jewel.gameObject.SetActive(false);
+        SFXManager.Instance.PlayAudio(SFXManager.Instance.uiInteractionAudioSource,
+            SFXManager.Instance.jewelFound);
         MultiSceneManager.Instance.OpenCanvas<CollectJewelUIManager>("UI/CollectJewelUI", popup => {
             GameController.Instance.isPopupOpen = true;
             popup.OnPopupOpen(_jewel, OnJewelCollected, OnJewelDiscarded);

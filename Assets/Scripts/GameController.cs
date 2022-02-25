@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
     public JewelCollectionController jewelCollectionController;
     public CinemachineConfiner cinemachineConfiner;
     public GameOverController gameOverController;
+    public BombsAvailableDisplayController bombsAvailableDisplayController;
     [HideInInspector] public PlayerController2 playerController;
     [HideInInspector] public LevelManager level;
 
@@ -63,7 +64,6 @@ public class GameController : MonoBehaviour
     public Text jewelsCollectedText;
     public Text explosionRangeText;
     public Text timerText;
-    public Transform bombCountHolder;
 
     [HideInInspector] public bool isPopupOpen;
     [HideInInspector] public bool isLevelComplete;
@@ -93,6 +93,9 @@ public class GameController : MonoBehaviour
 
     IEnumerator Start()
     {
+        //Start background SFX
+        SFXManager.Instance.ToggleBackgroundMusic(true);
+
         //Assign culling mask
         ogCamCullingMask = mainCamera.cullingMask;
 
@@ -129,8 +132,8 @@ public class GameController : MonoBehaviour
         //Reset HUD
         DisplayScore(0, 0);
         DisplayLevelNumber();
-        DisplayBombCount(liveBombCount);
         DisplayExplosionRange(explosionRange);
+        bombsAvailableDisplayController.UpdateBombAvailableDisplay(liveBombCount, maxBombCount);
 
         //Reset Timer
         timeRemaining = level.timeLimit;
@@ -146,10 +149,12 @@ public class GameController : MonoBehaviour
         if (gameOverController.isGameOver || isLevelComplete)
         {
             gameHUD.SetActive(false);
+            jewelSpawner.gameObject.SetActive(false);
             return;
         }
 
         gameHUD.SetActive(!isPopupOpen);
+        jewelSpawner.gameObject.SetActive(!isPopupOpen);
 
         mainCamera.cullingMask = isPopupOpen ? (ogCamCullingMask & ~(1 << 13)) : ogCamCullingMask;
 
@@ -206,8 +211,15 @@ public class GameController : MonoBehaviour
     //Place bomb at player's current location
     public void PlaceBomb()
     {
+        SFXManager _sfx = SFXManager.Instance;
+
         //Place bomb only if live bombs are less than the max bomb count 
-        if (liveBombCount >= maxBombCount) return;
+        if (liveBombCount >= maxBombCount)
+        {
+            //Play error SFX
+            _sfx.PlayAudio(playerController.playerAudioSource, _sfx.bombError);
+            return;
+        }
 
         Vector3 playerPos = player.transform.position;
         Vector3 _posToPlaceBomb = new Vector3(Mathf.Floor(playerPos.x) + 0.5f, 0, Mathf.Floor(playerPos.z) + 0.5f);
@@ -246,7 +258,7 @@ public class GameController : MonoBehaviour
                 liveBombCount--;
                 break;
         }
-        DisplayBombCount(liveBombCount);
+        bombsAvailableDisplayController.UpdateBombAvailableDisplay(liveBombCount, maxBombCount);
     }
 
      public void TogglePlayerGhostMode(bool _ghostMode)
@@ -268,6 +280,13 @@ public class GameController : MonoBehaviour
             //Level Complete
             isLevelComplete = true;
             PlayerPrefs.SetInt("Level_Completed", level.levelNumber);
+
+            //Play Game win SFX
+            SFXManager _sfx = SFXManager.Instance;
+            _sfx.PlayAudio(_sfx.uiInteractionAudioSource, _sfx.gameWin);
+
+            //Stop background music
+            _sfx.ToggleBackgroundMusic(false);
 
             //Check for game complete
             if (level.levelNumber == MultiSceneManager.Instance.numOfLevels)
@@ -389,15 +408,6 @@ public class GameController : MonoBehaviour
     public void DisplayExplosionRange(int _range)
     {
         explosionRangeText.text = string.Format("Range : x{0}", _range);
-    }
-
-    public void DisplayBombCount(int _liveBombCount)
-    {
-        int _bombsAvailable = maxBombCount - _liveBombCount;
-        for (int i = 0; i < bombCountHolder.childCount; i++)
-        {
-            bombCountHolder.GetChild(i).gameObject.SetActive(i < _bombsAvailable);
-        }
     }
 
     #endregion

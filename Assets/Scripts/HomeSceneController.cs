@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HomeSceneController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class HomeSceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Start background SFX
+        SFXManager.Instance.ToggleBackgroundMusic(true);
+
         //Show Continue button if completed a level before and hasn't completed the game
         buttons[0].SetActive(PlayerPrefs.HasKey("Level_Completed") && !PlayerPrefs.HasKey("Game_Completed"));
     }
@@ -65,5 +69,15 @@ public class HomeSceneController : MonoBehaviour
         controlPanel.SetActive(false);
         howToPlayPanel.SetActive(false);
         creditsPanel.SetActive(false);
+    }
+
+    public void PlayButtonClickSFX()
+    {
+        SFXManager.Instance.PlayButtonClickSFX();
+    }
+
+    public void PlayButtonHoverSFX()
+    {
+        SFXManager.Instance.PlayButtonHoverSFX();
     }
 }

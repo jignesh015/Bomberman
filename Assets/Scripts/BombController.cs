@@ -7,6 +7,7 @@ public class BombController : MonoBehaviour
 {
     public bool hasDetonator;
     public float explodeTime = 4f;
+    public AudioSource bombAudioSource;
     private Transform player;
     private bool shouldTween = true;
     private bool isRigid = false, shouldPush = false;
@@ -17,8 +18,7 @@ public class BombController : MonoBehaviour
     private Vector3 pushToPos;
     private GameController gameController;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         gameController = GameController.Instance;
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -26,6 +26,13 @@ public class BombController : MonoBehaviour
         explosionTrails = new List<GameObject>();
         bombPlaceTime = Time.time;
 
+        //Play Bomb Place SFX
+        SFXManager.Instance.PlayAudio(bombAudioSource, SFXManager.Instance.bombPlaced, false, 0.5f);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         if (!hasDetonator) Explode(explodeTime);
     }
 
@@ -98,6 +105,9 @@ public class BombController : MonoBehaviour
         GameObject explosion = GetExplosionGameObject();
         explosionTrails.Add(explosion);
         explosion.transform.position = new Vector3(_bombOrigin.x, explosion.transform.position.y, _bombOrigin.z);
+
+        //Play explosion SFX
+        SFXManager.Instance.PlayAudio(bombAudioSource, SFXManager.Instance.bombExplosion, false, 0.1f);
 
         //Do trail explosion
         StartCoroutine(DoTrailExplosion(_bombOrigin));
@@ -235,6 +245,9 @@ public class BombController : MonoBehaviour
             transform.position.y, transform.position.z + (_direction.z * 2));
 
         if(trailEffect) trailEffect.Play();
+
+        //Play bomb hit sfx
+        SFXManager.Instance.PlayAudio(bombAudioSource, SFXManager.Instance.bombPush, false, 0.5f);
     }
 
     private void StopPushingBomb()

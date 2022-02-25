@@ -20,6 +20,13 @@ public class GameOverController : MonoBehaviour
     {
         isGameOver = true;
 
+        //Play Game over SFX
+        SFXManager _sfx = SFXManager.Instance;
+        _sfx.PlayAudio(_sfx.uiInteractionAudioSource, _sfx.gameOver);
+
+        //Stop background music
+        _sfx.ToggleBackgroundMusic(false);
+
         yield return new WaitForSeconds(_delay);
 
         //Show game over popup

@@ -14,6 +14,8 @@ public class PlayerController2 : MonoBehaviour
     public float speed = 6f, turnSmoothTime = 0.1f, timeToDissolve;
     public bool isDead;
 
+    public AudioSource playerAudioSource;
+
     [Header("FOR DEBUGGING PURPOSE ONLY")]
     public bool godMode;
     public bool enableGhostMode;
@@ -79,7 +81,7 @@ public class PlayerController2 : MonoBehaviour
                 trailEffect.Play();
 
                 //Play walking SFX
-                SFXManager.Instance.PlayerWalkingSFX();
+                SFXManager.Instance.PlayerWalkingSFX(playerAudioSource);
             }
             else trailEffect.Stop();
         }

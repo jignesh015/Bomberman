@@ -70,6 +70,7 @@ public class MultiSceneManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Last_Selected_Level", _levelNo);
         ToggleLoadingScreen(true);
+        yield return new WaitForSeconds(1f);
         yield return StartCoroutine(UnloadAllSceneAsync());
         yield return StartCoroutine(LoadSceneAdditive("GameScene"));
         ToggleLoadingScreen(false);

@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public float minRandomDistance;
     public float maxRandomDistance;
 
+
     #region "Private variables"
     private bool isDead, changeDirectionRandomly;
     private float startYPos = 0,dissolveValue, turnSmoothVelocity, randomWalkDistance;
@@ -35,6 +36,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Vector2 currentGridPos, gridPosAtDirectionChange;
     private Vector3 currentEnemyPos;
+    
+    private AudioSource enemyAudioSource;
     #endregion
 
 
@@ -44,6 +47,7 @@ public class EnemyController : MonoBehaviour
     {
         enemy = GetComponent<CharacterController>();
         enemyRigidbody = GetComponent<Rigidbody>();
+        enemyAudioSource = GetComponent<AudioSource>();
         trail = transform.Find("Trail")?.gameObject;
         if (trail != null) trail.SetActive(false);
 
@@ -169,6 +173,9 @@ public class EnemyController : MonoBehaviour
 
         isDead = true;
         Destroy(gameObject, 2.5f);
+
+        //Play enemy dead sfx
+        SFXManager.Instance.PlayAudio(enemyAudioSource, SFXManager.Instance.enemyDeath);
 
         //Spawn trail
         if (trail != null && trail.transform.GetComponent<ParticleSystem>() != null)

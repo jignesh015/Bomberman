@@ -88,6 +88,11 @@ public class BombController : MonoBehaviour
     {
         yield return new WaitForSeconds(_explodeTime);
 
+        while (gameController.isPopupOpen)
+        {
+            yield return new WaitForSeconds(2f);
+        }
+
         //Update bomb origin
         _bombOrigin = new Vector3(Mathf.Floor(transform.position.x) + 0.5f, 
             0, Mathf.Floor(transform.position.z) + 0.5f);

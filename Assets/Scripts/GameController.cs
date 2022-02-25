@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
         GetNonDestroyableWallsPosition();
 
         //Reset HUD
-        DisplayScore(0, 0);
+        DisplayScore(0, 0, 0);
         DisplayLevelNumber();
         DisplayExplosionRange(explosionRange);
         bombsAvailableDisplayController.UpdateBombAvailableDisplay(liveBombCount, maxBombCount);
@@ -277,6 +277,14 @@ public class GameController : MonoBehaviour
     {
         if (_jewelsFoundCount == level.jewelsToSpawn.Count)
         {
+            //Check if player has enough score
+            if (!jewelCollectionController.HasEnoughScore())
+            {
+                //If doesn't have enough score, its game over
+                gameOverController.OnGameOver(GameOverReason.Score, 1f);
+                return;
+            }
+
             //Level Complete
             isLevelComplete = true;
             PlayerPrefs.SetInt("Level_Completed", level.levelNumber);
@@ -387,8 +395,14 @@ public class GameController : MonoBehaviour
         levelText.text = string.Format("Level : {0}", level.levelNumber);
     }
 
-    public void DisplayScore(int _gameScore, int _jewelsFoundCount)
+    public void DisplayScore(int _gameScore, int _jewelsFoundCount, float _delay = 1.5f)
     {
+        StartCoroutine(DisplayScoreAsync(_gameScore,_jewelsFoundCount,_delay));
+    }
+
+    private IEnumerator DisplayScoreAsync(int _gameScore, int _jewelsFoundCount, float _delay = 1.5f)
+    {
+        yield return new WaitForSeconds(_delay);
         scoreText.text = string.Format("Score : {0}", _gameScore);
         jewelsCollectedText.text = string.Format("Jewels Found : {0}/{1}", _jewelsFoundCount, level.jewelsToSpawn.Count);
     }

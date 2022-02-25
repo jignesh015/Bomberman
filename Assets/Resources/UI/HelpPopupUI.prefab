@@ -116,7 +116,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\nObjective:\n\n- Find jewels by mining\n- Collect real jewels and \n  
-    discard the fake ones\n- Earn points for real \n   jewels collected\n- Lose -100
+    discard the fake ones\n- Earn points for real \n   jewels collected\n- Lose -200
     points for fake\n   jewels collected\n- Find all jewels to complete\n   a level"
 --- !u!1 &5359641864409924813
 GameObject:
